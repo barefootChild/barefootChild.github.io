@@ -184,30 +184,16 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="What-is-Store"><a href="#What-is-Store" class="headerlink" title="What is Store"></a>What is Store</h2><p>  用过Redux，Vuex等状态管理机之后，肯定对Store的理念有所了解；Store就是单页面应用中保存公用数据的容器；<br>  应用中经常实用的state就是某个时间点Store生成的快照，可以通过store.getState()获得；<br>  用户只能通过View层发送Action来更改Store中的公用数据，而store.dispatch(),是View发出Action的唯一办法；<br>  Store通过Reducer在接收到一个Action后，更新相应的公用数据；<br>  数据更新后，对应的View也要做相应的更新，Store.subscribe(listener)设置监听函数，一旦数据变化,就自动执行这个函数,所以只要将View的<br>更新函数放入listener，就会实现View层的自动渲染；<br>  store.subscribe()返回一个函数，执行此函数就可以解除监听：</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    var unsubscribe = store.subscribe();</div><div class="line">    unsubscribe();</div><div class="line">``` </div><div class="line"></div><div class="line">## What is createStore doing?</div><div class="line"></div><div class="line">  实际应用中要通过createStore函数生成一个Store，那这个函数到底做了什么呢？阮一峰老师解释的很清晰，我这边搬来做一下笔记：</div></pre></td></tr></table></figure>
-<pre><code>const createStore = (reducer) =&gt; {
-  let state;
-  let listeners = [];
-
-  const getState = () =&gt; state;
-  const dispatch = (action) =&gt; {
-    state = reducer(state, action);
-    listeners.forEach(listener =&gt; listener());
-  };
-
-  const subscribe = (listener) =&gt; {
-    listeners.push(listener);
-    return () =&gt; {
-      listeners = listeners.filter(l =&gt; l !== listener);
-    }
-  };
-
-  dispatch({});
-
-  return { getState, dispatch, subscribe };
-}
-</code></pre><p>```</p>
+        <h1 id="What-is-Store"><a href="#What-is-Store" class="headerlink" title="What is Store"></a>What is Store</h1><ul>
+<li>用过Redux，Vuex等状态管理机之后，肯定对Store的理念有所了解；Store就是单页面应用中保存公用数据的容器；</li>
+<li>应用中经常实用的state就是某个时间点Store生成的快照，可以通过store.getState()获得；</li>
+<li>用户只能通过View层发送Action来更改Store中的公用数据，而store.dispatch(),是View发出Action的唯一办法；</li>
+<li>Store通过Reducer在接收到一个Action后，更新相应的公用数据；</li>
+<li>数据更新后，对应的View也要做相应的更新，Store.subscribe(listener)设置监听函数，一旦数据变化,就自动执行这个函数,所以只要将View的<br>更新函数放入listener，就会实现View层的自动渲染；</li>
+<li><p>store.subscribe()返回一个函数，执行此函数就可以解除监听：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">     <span class="keyword">var</span> unsubscribe = store.subscribe();</div><div class="line">     unsubscribe();</div><div class="line">  <span class="string">``</span><span class="string">` </span></div><div class="line"><span class="string"># What is createStore doing?</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">* 实际应用中要通过createStore函数生成一个Store，那这个函数到底做了什么呢？阮一峰老师解释的很清晰，我这边搬来做一下笔记：</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">  `</span><span class="string">``</span>javascript</div><div class="line">     <span class="keyword">const</span> createStore = <span class="function"><span class="keyword">function</span>(<span class="params">reducer</span>)</span>&#123;</div><div class="line">     <span class="keyword">var</span> state;</div><div class="line">     <span class="keyword">var</span> listeners = [];</div><div class="line">      </div><div class="line">     <span class="keyword">const</span> getState = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> state&#125;;</div><div class="line">     <span class="keyword">const</span> dispatch = <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</div><div class="line">       state = reducer(state, action);</div><div class="line">       listeners.forEach(<span class="function"><span class="params">listener</span> =&gt;</span> listener());</div><div class="line">     &#125;;</div><div class="line">      </div><div class="line">     <span class="keyword">const</span> subscribe = <span class="function"><span class="keyword">function</span>(<span class="params">listener</span>)</span>&#123;</div><div class="line">       listeners.push(listener);</div><div class="line">       <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">         listeners = listeners.filter(<span class="function"><span class="params">l</span> =&gt;</span> l !== listener);</div><div class="line">       &#125;</div><div class="line">     &#125;;</div><div class="line">      </div><div class="line">     dispatch(&#123;&#125;);</div><div class="line">      </div><div class="line">     <span class="keyword">return</span> &#123; getState, dispatch, subscribe &#125;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
 
@@ -1099,19 +1085,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">methods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
               </li>
              
               <li class="article-tag-list-item">
