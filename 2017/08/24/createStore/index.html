@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://barefootChild.github.io">
-  <title>Tag: html | BareFootChild的博客</title>
+  <title>createStore | BareFootChild的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="郑州大学12级,前端菜鸟一枚.">
-<meta name="keywords" content="前端,js,html5,vue,node,程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BareFootChild的博客">
-<meta property="og:url" content="https://barefootChild.github.io/tags/html/index.html">
+  <meta name="description" content="What is Store用过Redux，Vuex等状态管理机之后，肯定对Store的理念有所了解；Store就是单页面应用中保存公用数据的容器； 应用中经常实用的state就是某个时间点Store生成的快照，可以通过store.getState()获得； 用户只能通过View层发送Action来更改Store中的公用数据，而store.dispatch(),是View发出Action的唯一办法；">
+<meta name="keywords" content="React,Redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="createStore">
+<meta property="og:url" content="https://barefootChild.github.io/2017/08/24/createStore/index.html">
 <meta property="og:site_name" content="BareFootChild的博客">
-<meta property="og:description" content="郑州大学12级,前端菜鸟一枚.">
+<meta property="og:description" content="What is Store用过Redux，Vuex等状态管理机之后，肯定对Store的理念有所了解；Store就是单页面应用中保存公用数据的容器； 应用中经常实用的state就是某个时间点Store生成的快照，可以通过store.getState()获得； 用户只能通过View层发送Action来更改Store中的公用数据，而store.dispatch(),是View发出Action的唯一办法；">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-08-24T10:31:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BareFootChild的博客">
-<meta name="twitter:description" content="郑州大学12级,前端菜鸟一枚.">
+<meta name="twitter:title" content="createStore">
+<meta name="twitter:description" content="What is Store用过Redux，Vuex等状态管理机之后，肯定对Store的理念有所了解；Store就是单页面应用中保存公用数据的容器； 应用中经常实用的state就是某个时间点Store生成的快照，可以通过store.getState()获得； 用户只能通过View层发送Action来更改Store中的公用数据，而store.dispatch(),是View发出Action的唯一办法；">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -162,72 +163,184 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-createStore" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/16/browsers-front-end/" class="archive-article-date">
-  	<time datetime="2017-02-16T09:13:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/16/browsers-front-end/">browsers-front-end</a>
+    <h1 class="article-title" itemprop="name">
+      createStore
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/08/24/createStore/" class="archive-article-date">
+  	<time datetime="2017-08-24T09:32:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="What-is-Store"><a href="#What-is-Store" class="headerlink" title="What is Store"></a>What is Store</h2><pre><code>用过Redux，Vuex等状态管理机之后，肯定对Store的理念有所了解；Store就是单页面应用中保存公用数据的容器；
+应用中经常实用的state就是某个时间点Store生成的快照，可以通过store.getState()获得；
+用户只能通过View层发送Action来更改Store中的公用数据，而store.dispatch(),是View发出Action的唯一办法；
+Store通过Reducer在接收到一个Action后，更新相应的公用数据；
+数据更新后，对应的View也要做相应的更新，Store.subscribe(listener)设置监听函数，一旦数据变化，就自动执行这个函数，所以只要将View的
+</code></pre><p>更新函数放入listener，就会实现View层的自动渲染；<br>    store.subscribe()返回一个函数，执行此函数就可以解除监听：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">var</span> unsubscribe = store.subscribe();</div><div class="line">    unsubscribe();</div><div class="line"><span class="string">``</span><span class="string">` </span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">## What is createStore doing?</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    实际应用中要通过createStore函数生成一个Store，那这个函数到底做了什么呢？阮一峰老师解释的很清晰，我这边搬来做一下笔记：</span></div><div class="line"><span class="string">`</span><span class="string">``</span>ecmascript <span class="number">6</span></div><div class="line">    <span class="keyword">const</span> createStore = <span class="function">(<span class="params">reducer</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">let</span> state;</div><div class="line">      <span class="keyword">let</span> listeners = [];</div><div class="line">      </div><div class="line">      <span class="keyword">const</span> getState = <span class="function"><span class="params">()</span> =&gt;</span> state;</div><div class="line">      <span class="keyword">const</span> dispatch = <span class="function">(<span class="params">action</span>) =&gt;</span> &#123;</div><div class="line">        state = reducer(state, action);</div><div class="line">        listeners.forEach(<span class="function"><span class="params">listener</span> =&gt;</span> listener());</div><div class="line">      &#125;;</div><div class="line">      </div><div class="line">      <span class="keyword">const</span> subscribe = <span class="function">(<span class="params">listener</span>) =&gt;</span> &#123;</div><div class="line">        listeners.push(listener);</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">          listeners = listeners.filter(<span class="function"><span class="params">l</span> =&gt;</span> l !== listener);</div><div class="line">        &#125;</div><div class="line">      &#125;;</div><div class="line">      </div><div class="line">      dispatch(&#123;&#125;);</div><div class="line">      </div><div class="line">      <span class="keyword">return</span> &#123; getState, dispatch, subscribe &#125;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我乘公车<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/media/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/media/wechat.jpeg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">browser</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/08/24/createStore/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/04/Debounce-And-Throttle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Debounce And Throttle </div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -250,9 +363,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
