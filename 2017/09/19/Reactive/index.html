@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="BareFootChild的博客">
 <meta property="og:description" content="响应式原理  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就是一个观察者，在数据变更的时候通知订阅者更新">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-19T06:52:26.000Z">
+<meta property="og:updated_time" content="2017-09-19T06:59:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reactive">
 <meta name="twitter:description" content="响应式原理  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就是一个观察者，在数据变更的时候通知订阅者更新">
@@ -184,9 +184,9 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="响应式原理"><a href="#响应式原理" class="headerlink" title="响应式原理"></a>响应式原理</h1><p>  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,<br>这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就<br>是一个观察者，在数据变更的时候通知订阅者更新视图。</p>
-<h2 id="vue如何将实例配置项设置为可观察的？"><a href="#vue如何将实例配置项设置为可观察的？" class="headerlink" title="vue如何将实例配置项设置为可观察的？"></a>vue如何将实例配置项设置为可观察的？</h2>   <figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">function observer(obj, cb) &#123;</div><div class="line">  Object.keys(obj).forEach((key) =&gt; &#123;</div><div class="line">    defineReactive(obj, key, config, cb)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function defineReactive(obj, key, config, cb) &#123;</div><div class="line">  Object.defineProperty(obj, key, &#123;</div><div class="line">    enumerable: true,</div><div class="line">    configurable: true,</div><div class="line">    get: () =&gt; &#123;</div><div class="line">      return obj[key]; //返回值要根据该值的依赖决定</div><div class="line">    &#125;,</div><div class="line">    set: newVal =&gt; &#123;</div><div class="line">      obj[key] = newVal; //有可能会影响到他所依赖数据的值</div><div class="line">      cb();</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Vue &#123;</div><div class="line">  constructor(options) &#123;</div><div class="line">    this._data = options.data;</div><div class="line">    observer(this._data, options.render);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let app = new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  data: &#123;</div><div class="line">    text: &apos;test&apos;</div><div class="line">  &#125;,</div><div class="line">  render()&#123;</div><div class="line">    console.log(&apos;Hello Vue!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="vue如何将实例配置项设置为可观察的？"><a href="#vue如何将实例配置项设置为可观察的？" class="headerlink" title="vue如何将实例配置项设置为可观察的？"></a>vue如何将实例配置项设置为可观察的？</h2>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">observer</span>(<span class="params">obj, cb</span>) </span>&#123;</div><div class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</div><div class="line">    defineReactive(obj, key, config, cb)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span>(<span class="params">obj, key, config, cb</span>) </span>&#123;</div><div class="line">  <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</div><div class="line">    enumerable: <span class="literal">true</span>,</div><div class="line">    configurable: <span class="literal">true</span>,</div><div class="line">    get: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">return</span> obj[key]; <span class="comment">//返回值要根据该值的依赖决定</span></div><div class="line">    &#125;,</div><div class="line">    set: <span class="function"><span class="params">newVal</span> =&gt;</span> &#123;</div><div class="line">      obj[key] = newVal; <span class="comment">//有可能会影响到他所依赖数据的值</span></div><div class="line">      cb();</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vue</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(options) &#123;</div><div class="line">    <span class="keyword">this</span>._data = options.data;</div><div class="line">    observer(<span class="keyword">this</span>._data, options.render);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  data: &#123;</div><div class="line">    text: <span class="string">'test'</span></div><div class="line">  &#125;,</div><div class="line">  render()&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello Vue!'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>   所以当修改this._data中的数据时就会触发set，订阅者就会被触发，vue里面就是实例的render函数；<br>   但是这时候修改数据就要调用app._data.text,如何实现操作app.text就会实现预期效果呢？vue内部实际实现了一层代理：</p>
-<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>   在vue的构造函数Constructor中为data执行一个代理函数，就可以把data对象上的属性代理到vue实例上：<br>   <figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function _proxy(data) &#123;</div><div class="line">  const that = this;</div><div class="line">  Object.keys(data).forEach(key =&gt; &#123;</div><div class="line">    Object.defineProperty(that, key, &#123;</div><div class="line">      configurable: true,</div><div class="line">      enumerable: true,</div><div class="line">      get: function proxyGetter()&#123;</div><div class="line">        return that._data[key];</div><div class="line">      &#125;,</div><div class="line">      set: function proxySetter(val)&#123;</div><div class="line">        that._data[key] = val;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>   在vue的构造函数Constructor中为data执行一个代理函数，就可以把data对象上的属性代理到vue实例上：<br>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">_proxy</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> that = <span class="keyword">this</span>;</div><div class="line">  <span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">Object</span>.defineProperty(that, key, &#123;</div><div class="line">      configurable: <span class="literal">true</span>,</div><div class="line">      enumerable: <span class="literal">true</span>,</div><div class="line">      get: <span class="function"><span class="keyword">function</span> <span class="title">proxyGetter</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> that._data[key];</div><div class="line">      &#125;,</div><div class="line">      set: <span class="function"><span class="keyword">function</span> <span class="title">proxySetter</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">        that._data[key] = val;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -439,6 +439,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
               </li>
              
@@ -447,7 +459,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,19 +475,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFC</a>
+                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">methods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,14 +507,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">methods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">constructor</a>
               </li>
              
@@ -508,14 +516,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,19 +539,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">request</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">request</a>
               </li>
              
               <li class="article-tag-list-item">
