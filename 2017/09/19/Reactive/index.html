@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://barefootChild.github.io">
-  <title>Tag: node | BareFootChild的博客</title>
+  <title>Reactive | BareFootChild的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="郑州大学12级,前端菜鸟一枚.">
-<meta name="keywords" content="前端,js,html5,vue,node,程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BareFootChild的博客">
-<meta property="og:url" content="https://barefootChild.github.io/tags/node/index.html">
+  <meta name="description" content="响应式原理  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就是一个观察者，在数据变更的时候通知订阅者更新">
+<meta name="keywords" content="javascript,vue,MVVM,reactive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reactive">
+<meta property="og:url" content="https://barefootChild.github.io/2017/09/19/Reactive/index.html">
 <meta property="og:site_name" content="BareFootChild的博客">
-<meta property="og:description" content="郑州大学12级,前端菜鸟一枚.">
+<meta property="og:description" content="响应式原理  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就是一个观察者，在数据变更的时候通知订阅者更新">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-19T06:52:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BareFootChild的博客">
-<meta name="twitter:description" content="郑州大学12级,前端菜鸟一枚.">
+<meta name="twitter:title" content="Reactive">
+<meta name="twitter:description" content="响应式原理  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就是一个观察者，在数据变更的时候通知订阅者更新">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -162,36 +163,69 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Reactive" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/08/nodeSpider/" class="archive-article-date">
-  	<time datetime="2017-02-08T06:32:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/08/nodeSpider/">nodeSpider</a>
+    <h1 class="article-title" itemprop="name">
+      Reactive
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/19/Reactive/" class="archive-article-date">
+  	<time datetime="2017-09-19T06:11:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="响应式原理"><a href="#响应式原理" class="headerlink" title="响应式原理"></a>响应式原理</h1><p>  何为响应式？对于前端MVVM来说，修改数据相应的视图更新即为响应式。接触Vue时，尤大大在文档中说过，vue的响应式原理依赖于Object.defineProperty,<br>这也是vue不支持IE8及更低版本浏览器的原因。vue通过设定对象属性的setter／getter方法来监听数据的变化，通过getter进行依赖收集，每个setter方法就<br>是一个观察者，在数据变更的时候通知订阅者更新视图。</p>
+<h2 id="vue如何将实例配置项设置为可观察的？"><a href="#vue如何将实例配置项设置为可观察的？" class="headerlink" title="vue如何将实例配置项设置为可观察的？"></a>vue如何将实例配置项设置为可观察的？</h2>   <figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">function observer(obj, cb) &#123;</div><div class="line">  Object.keys(obj).forEach((key) =&gt; &#123;</div><div class="line">    defineReactive(obj, key, config, cb)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">function defineReactive(obj, key, config, cb) &#123;</div><div class="line">  Object.defineProperty(obj, key, &#123;</div><div class="line">    enumerable: true,</div><div class="line">    configurable: true,</div><div class="line">    get: () =&gt; &#123;</div><div class="line">      return obj[key]; //返回值要根据该值的依赖决定</div><div class="line">    &#125;,</div><div class="line">    set: newVal =&gt; &#123;</div><div class="line">      obj[key] = newVal; //有可能会影响到他所依赖数据的值</div><div class="line">      cb();</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Vue &#123;</div><div class="line">  constructor(options) &#123;</div><div class="line">    this._data = options.data;</div><div class="line">    observer(this._data, options.render);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let app = new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  data: &#123;</div><div class="line">    text: &apos;test&apos;</div><div class="line">  &#125;,</div><div class="line">  render()&#123;</div><div class="line">    console.log(&apos;Hello Vue!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>   所以当修改this._data中的数据时就会触发set，订阅者就会被触发，vue里面就是实例的render函数；<br>   但是这时候修改数据就要调用app._data.text,如何实现操作app.text就会实现预期效果呢？vue内部实际实现了一层代理：</p>
+<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>   在vue的构造函数Constructor中为data执行一个代理函数，就可以把data对象上的属性代理到vue实例上：<br>   <figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function _proxy(data) &#123;</div><div class="line">  const that = this;</div><div class="line">  Object.keys(data).forEach(key =&gt; &#123;</div><div class="line">    Object.defineProperty(that, key, &#123;</div><div class="line">      configurable: true,</div><div class="line">      enumerable: true,</div><div class="line">      get: function proxyGetter()&#123;</div><div class="line">        return that._data[key];</div><div class="line">      &#125;,</div><div class="line">      set: function proxySetter(val)&#123;</div><div class="line">        that._data[key] = val;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我乘公车<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/media/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/media/wechat.jpeg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,33 +235,118 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MVVM</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">es6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">reactive</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/09/19/Reactive/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/08/24/createStore/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">createStore</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -250,9 +369,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
