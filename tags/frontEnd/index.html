@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://barefootChild.github.io">
-  <title>Debounce And Throttle  | BareFootChild的博客</title>
+  <title>Tag: frontEnd | BareFootChild的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="debounce调用某函数一段时间后才会执行，如果在这段期间再调用该函数则重新计算执行时间： 12345678910function debounce(time, func) &amp;#123;  var previous;  return function() &amp;#123;    var that = this, args = arguments;    clearTimeout(previous);">
-<meta name="keywords" content="javascript,front-end,Function">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Debounce And Throttle ">
-<meta property="og:url" content="https://barefootChild.github.io/2017/08/04/Debounce-And-Throttle/index.html">
+  <meta name="description" content="郑州大学12级,前端菜鸟一枚.">
+<meta name="keywords" content="前端,js,html5,vue,node,程序猿">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BareFootChild的博客">
+<meta property="og:url" content="https://barefootChild.github.io/tags/frontEnd/index.html">
 <meta property="og:site_name" content="BareFootChild的博客">
-<meta property="og:description" content="debounce调用某函数一段时间后才会执行，如果在这段期间再调用该函数则重新计算执行时间： 12345678910function debounce(time, func) &amp;#123;  var previous;  return function() &amp;#123;    var that = this, args = arguments;    clearTimeout(previous);">
+<meta property="og:description" content="郑州大学12级,前端菜鸟一枚.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-04T02:02:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Debounce And Throttle ">
-<meta name="twitter:description" content="debounce调用某函数一段时间后才会执行，如果在这段期间再调用该函数则重新计算执行时间： 12345678910function debounce(time, func) &amp;#123;  var previous;  return function() &amp;#123;    var that = this, args = arguments;    clearTimeout(previous);">
+<meta name="twitter:title" content="BareFootChild的博客">
+<meta name="twitter:description" content="郑州大学12级,前端菜鸟一枚.">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -163,194 +162,68 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Debounce-And-Throttle" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Debounce And Throttle 
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/09/22/front-end-performance/" class="archive-article-date">
+  	<time datetime="2017-09-22T03:08:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/22/front-end-performance/">front_end_performance</a>
     </h1>
   
 
-        
-        <a href="/2017/08/04/Debounce-And-Throttle/" class="archive-article-date">
-  	<time datetime="2017-08-04T01:38:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h2><p>调用某函数一段时间后才会执行，如果在这段期间再调用该函数则重新计算执行时间：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">time, func</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> previous;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>, args = <span class="built_in">arguments</span>;</div><div class="line">    clearTimeout(previous);</div><div class="line">    previous = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      func.apply(that, args);</div><div class="line">    &#125;, time);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="throttle"><a href="#throttle" class="headerlink" title="throttle"></a>throttle</h2><p>设定一个函数执行时间间隔，只有当前执行时间与上次执行时间的时间间隔大于设定的执行时间间隔，函数才会执行：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">delay, func</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> last = <span class="number">0</span>;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> current = +(<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">    <span class="keyword">if</span> (current - last &gt; delay) &#123;</div><div class="line">      func.apply(<span class="keyword">this</span>, func);</div><div class="line">      last = current;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我乘公车<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/media/alipay.jpeg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/media/wechat.jpeg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Function</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">frontEnd</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/08/04/Debounce-And-Throttle/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/24/createStore/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          createStore
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/06/05/Regex/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Regex</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
+    
 
 
           </div>
@@ -373,9 +246,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
