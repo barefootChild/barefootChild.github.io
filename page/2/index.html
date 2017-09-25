@@ -362,13 +362,18 @@ var _hmt = _hmt || [];
 <li>设置meta标签<br>meta之viewport，其主要用来告诉浏览器如何规范的渲染Web页面，而你则需要告诉它视窗有多大。在开发移动端页面，我们需要在html中设置meta标签如下：</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>  该设置不允许用户通过点击或者缩放等操作对屏幕放大浏览，但是该设置已经在ios10以上的版本失效了，可以额外通过js事件进行控制：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="built_in">document</span>.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">     <span class="keyword">if</span> (event.touches.length&gt;<span class="number">1</span>) &#123;</div><div class="line">       event.preventDefault();</div><div class="line">     &#125;</div><div class="line">   &#125;);</div><div class="line">   <span class="keyword">var</span> lastTouchEnd = <span class="number">0</span>;</div><div class="line">   <span class="built_in">document</span>.addEventListener(<span class="string">'touchend'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">     <span class="keyword">var</span> now=(<span class="keyword">new</span> <span class="built_in">Date</span>()).getTime();</div><div class="line">     <span class="keyword">if</span> (now - lastTouchEnd &lt;= <span class="number">300</span>) &#123;</div><div class="line">       event.preventDefault();</div><div class="line">     &#125;</div><div class="line">     lastTouchEnd=now;</div><div class="line">   &#125;,<span class="literal">false</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>   禁止ios上自动识别电话：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>   禁止android上自动识别邮箱：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"email=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>   解决ios上的safari上地址栏和顶端样式条：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> <span class="attr">content</span>=<span class="string">"yes"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="string">"black"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
 <ul>
-<li>手淘的flexible<br>flexible是一个制作H5适配的开源库，需要在html中引入，可以直接使用阿里CDN：</li>
-</ul>
+<li><p>打电话发短信</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel:1008611"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"sms:10086"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>手淘的flexible<br>flexible是一个制作H5适配的开源库，需要在html中引入，可以直接使用阿里CDN：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<pre><code>执行这个JS后，会在元素上增加一个data－dpr属性，以及一个font-size样式。JS会根据不同的设备添加不同的data－dpr值，比如说1、2、3，同时会给html加上对应的font-size
-的值，比如说37.5px
-</code></pre><ul>
+<p>  执行这个JS后，会在元素上增加一个data－dpr属性，以及一个font-size样式。JS会根据不同的设备添加不同的data－dpr值，比如说1、2、3，同时会给html加上对应的font-size<br>  的值，比如说37.5px</p>
+</li>
 <li><p>放弃px拥抱rem<br>em的计算是基于父级元素的，在实际中给我们的计算带来了很大的不方便。但是rem是始终基于根元素html的；刚刚我们引入了手淘的flexible，并给html加了font-size，如此以来，页面<br>中的元素就可以通过rem单位来设置了。会根据html元素的font-size值做相应的计算，从而实现屏幕的适配效果。</p>
 </li>
 <li><p>css处理器(SASS)<br>可以使用Sass的函数、混合宏来实现：</p>
@@ -1071,11 +1076,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1083,7 +1088,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1092,6 +1097,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1107,7 +1116,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1116,14 +1129,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">methods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1155,6 +1160,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1171,6 +1184,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">request</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -1179,11 +1200,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">request</a>
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,23 +1216,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">elementPosition</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">copy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
