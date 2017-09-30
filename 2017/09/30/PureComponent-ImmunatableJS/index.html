@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://barefootChild.github.io">
-  <title>Tag: git | BareFootChild的博客</title>
+  <title>PureComponent_&amp;&amp;_ImmunatableJS | BareFootChild的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="郑州大学12级,前端菜鸟一枚.">
-<meta name="keywords" content="前端,js,html5,vue,node,程序猿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BareFootChild的博客">
-<meta property="og:url" content="https://barefootChild.github.io/tags/git/index.html">
+  <meta name="description" content="对于前端目前流行的两大框架React、Vue来说，组件化、高性能、Virtual Dom是他们脱颖而出的特点；对于使用该两大框架的前端开发者来说，在开发过程中只需要关注数据层，至于UI视图层如何变化更新，完全由框架内部机制决定；频繁、大量操作dom是影响前端界面渲染性能的极大祸源，虽然VirtualDom和Diff算法很大程度上解决了这一痛点，但是这两大神器也是根据我们转交给他们的数据来决定如">
+<meta name="keywords" content="React,ImmutableJs,PureComponent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PureComponent_&amp;&amp;_ImmunatableJS">
+<meta property="og:url" content="https://barefootChild.github.io/2017/09/30/PureComponent-ImmunatableJS/index.html">
 <meta property="og:site_name" content="BareFootChild的博客">
-<meta property="og:description" content="郑州大学12级,前端菜鸟一枚.">
+<meta property="og:description" content="对于前端目前流行的两大框架React、Vue来说，组件化、高性能、Virtual Dom是他们脱颖而出的特点；对于使用该两大框架的前端开发者来说，在开发过程中只需要关注数据层，至于UI视图层如何变化更新，完全由框架内部机制决定；频繁、大量操作dom是影响前端界面渲染性能的极大祸源，虽然VirtualDom和Diff算法很大程度上解决了这一痛点，但是这两大神器也是根据我们转交给他们的数据来决定如">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/29/6268579e0f3c922db1ce39de89ef8598?imageView2/0/w/1280/h/960">
+<meta property="og:updated_time" content="2017-09-30T07:54:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BareFootChild的博客">
-<meta name="twitter:description" content="郑州大学12级,前端菜鸟一枚.">
+<meta name="twitter:title" content="PureComponent_&amp;&amp;_ImmunatableJS">
+<meta name="twitter:description" content="对于前端目前流行的两大框架React、Vue来说，组件化、高性能、Virtual Dom是他们脱颖而出的特点；对于使用该两大框架的前端开发者来说，在开发过程中只需要关注数据层，至于UI视图层如何变化更新，完全由框架内部机制决定；频繁、大量操作dom是影响前端界面渲染性能的极大祸源，虽然VirtualDom和Diff算法很大程度上解决了这一痛点，但是这两大神器也是根据我们转交给他们的数据来决定如">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/9/29/6268579e0f3c922db1ce39de89ef8598?imageView2/0/w/1280/h/960">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -162,72 +165,195 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-PureComponent-ImmunatableJS" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/01/createBlog/" class="archive-article-date">
-  	<time datetime="2016-11-01T11:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-01</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/01/createBlog/">createBlog</a>
+    <h1 class="article-title" itemprop="name">
+      PureComponent_&amp;&amp;_ImmunatableJS
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/09/30/PureComponent-ImmunatableJS/" class="archive-article-date">
+  	<time datetime="2017-09-30T02:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  对于前端目前流行的两大框架React、Vue来说，组件化、高性能、Virtual Dom是他们脱颖而出的特点；对于使用该两大框架的前端开发者来说，在开发过程中只需要关注数据层，至于UI视图层如何变化更新，完全由框架内部机制决定；频繁、大量操作dom是影响前端界面渲染性能的极大祸源，虽然VirtualDom和Diff算法很大程度上解决了这一痛点，但是这两大神器也是根据我们转交给他们的数据来决定如何渲染，渲染更新何处dom的；所以，如果我们可以在将数据交给Virtual Dom 和Diff处理之前对之进行精心处理一番，定能将性能提升又一个高度；</p>
+<h2 id="牵涉到JavaScript变量类型和React渲染机制，该部分知识请自行补充，本文不做详述；"><a href="#牵涉到JavaScript变量类型和React渲染机制，该部分知识请自行补充，本文不做详述；" class="headerlink" title="牵涉到JavaScript变量类型和React渲染机制，该部分知识请自行补充，本文不做详述；"></a>牵涉到JavaScript变量类型和React渲染机制，该部分知识请自行补充，本文不做详述；</h2><a id="more"></a>
+<h2 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h2><p>  PureComponent和Component基本一样，但是PureComponent会在render之前对组件前后两次数据执行一次浅比较，来决定是否更新组件，但毕竟是浅比较所以只会比较第一层；当组件的props和state：</p>
+<ol>
+<li>引用和第一层数据都没有发生变化，render函数不会触发；</li>
+<li>第一层数据没变，但引用变了，就会产生额外的性能浪费；</li>
+<li>第一层数据改变，但是引用没变，就会造成不渲染，所以对数据的操作一定要小心；</li>
+</ol>
+<h2 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h2><p>  Immutable.js是持久性数据结构的库，数据一旦创建，就不能再被修改，任何修改、添加、删除操作都会返回一个新的Immutable对象；这样可以让我们更容易地去处理缓存、回退、数据变化检测等问题，可以简易开发；ImmutableJs提供了大量的API去更新、删除、添加数据，极大方便了我们操纵数据，还提供了原生类型与ImmutableJs类型判断与转换的方法；</p>
+<h2 id="ImmutableJS两大特性"><a href="#ImmutableJS两大特性" class="headerlink" title="ImmutableJS两大特性"></a>ImmutableJS两大特性</h2><ol>
+<li>持久性数据结构：保证数据一旦创建就不能修改；</li>
+<li>结构共享： 没有改变的数据共用一个引用；<br><img src="https://user-gold-cdn.xitu.io/2017/9/29/6268579e0f3c922db1ce39de89ef8598?imageView2/0/w/1280/h/960" alt="ImmutableJs Tree"><br>左边是旧值，右边是新值，我们如果改变了左边红色节点的值，生成的新值就改变了红色节点到根节点路径间的所有节点，就是青色节点的值，其他值没有任何改变，所以大半部分的蓝色节点还是和旧值共享的；</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我乘公车<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/media/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/media/wechat.jpeg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ImmutableJs</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">gitHub Pages</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PureComponent</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/09/30/PureComponent-ImmunatableJS/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/09/22/front-end-performance/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">front_end_performance</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -250,9 +376,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

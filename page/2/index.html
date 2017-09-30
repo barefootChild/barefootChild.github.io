@@ -164,6 +164,105 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-functionCurrie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/27/functionCurrie/">functionCurrie</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/27/functionCurrie/" class="archive-article-date">
+  	<time datetime="2017-04-27T05:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="javascript函数柯里化"><a href="#javascript函数柯里化" class="headerlink" title="javascript函数柯里化"></a>javascript函数柯里化</h1><p>  在计算机语言中，柯里化，就是把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下的参数而且返回结果的新函数的技术。<br>  eg:<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryingAdd</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">b</span>) </span>&#123;</div><div class="line">       <span class="keyword">return</span> a + b;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">add(<span class="number">1</span>, <span class="number">2</span>); <span class="comment">// 3</span></div><div class="line">curryingAdd(<span class="number">1</span>)(<span class="number">2</span>); <span class="comment">// 3</span></div></pre></td></tr></table></figure></p>
+<p>  上面的函数add是一般的函数，将传进来的参数进行相加；函数curryingAdd就是对函数add进行柯里化的函数；</p>
+<p>  函数的柯里化能够让我们重新组合自己的应用，可以把复杂功能拆分成一个一个小的部分，每一个小的部分都是简单的，便于理解的，而且是容易测试的；</p>
+<h2 id="如何对函数进行柯里化？-涉及知识：闭包，高阶函数，不完全函数等"><a href="#如何对函数进行柯里化？-涉及知识：闭包，高阶函数，不完全函数等" class="headerlink" title="如何对函数进行柯里化？(涉及知识：闭包，高阶函数，不完全函数等)"></a>如何对函数进行柯里化？(涉及知识：闭包，高阶函数，不完全函数等)</h2><ul>
+<li><h3 id="蠢萌皮卡丘"><a href="#蠢萌皮卡丘" class="headerlink" title="蠢萌皮卡丘"></a>蠢萌皮卡丘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printInfo</span>(<span class="params">name, song</span>) </span>&#123;</div><div class="line">   <span class="built_in">console</span>.log(name + <span class="string">'最喜欢的歌曲是：'</span> + song);</div><div class="line">&#125;</div><div class="line">printInfo(<span class="string">'Tom'</span>, <span class="string">'七里香'</span>);</div><div class="line">printInfo(<span class="string">'Jerry'</span>, <span class="string">'雅俗共赏'</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryingPrintInfo</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">song</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(name + <span class="string">'最喜欢的歌曲是：'</span> + song);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">curryingPrintInfo(<span class="string">'Tom'</span>)(<span class="string">'七里香'</span>);</div><div class="line">curryingPrintInfo(<span class="string">'Jerry'</span>)(<span class="string">'雅俗共赏'</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><h3 id="皮卡丘进化"><a href="#皮卡丘进化" class="headerlink" title="皮卡丘进化"></a>皮卡丘进化</h3><p>上面虽然实现了函数柯里化，但是当我们需要柯里化的时候，都要像上面那样不断地进行函数嵌套，那就是噩梦；所以下面就提供一个帮助其他函数进行柯里化的函数；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 高阶函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryingHelper</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> _args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> _newArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div><div class="line">        <span class="keyword">var</span> _totalArgs = _args.concat(_newArgs);</div><div class="line">        <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, _totalArgs);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>检测上面辅助柯里化函数的正确性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">showMsg</span>(<span class="params">name, age, fruit</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'My name is '</span> + name + <span class="string">', I\'m '</span> + age + <span class="string">' years old, '</span> + <span class="string">' and I like eat '</span> + fruit);</div><div class="line">&#125;</div><div class="line">curryingHelper(showMsg, <span class="string">'zys'</span>)(<span class="number">22</span>, <span class="string">'apple'</span>); <span class="comment">// My name is zys, I'm 22 years old, and I like eat apple</span></div><div class="line">curryingHelper(showMsg, <span class="string">'glj'</span>)(<span class="number">22</span>, <span class="string">'banana'</span>); <span class="comment">// My name is glj, I'm 22 years old, and I like eat banana</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/04/27/functionCurrie/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">function</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">currie</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">arguments</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/27/functionCurrie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -893,92 +992,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-ES6-vs-ES5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/07/ES6-vs-ES5/">ES6_vs_ES5</a>
-    </h1>
-  
-
-        
-        <a href="/2016/11/07/ES6-vs-ES5/" class="archive-article-date">
-  	<time datetime="2016-11-07T08:15:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>原文地址: <a href="http://adrianmejia.com/blog/2016/10/19/Overview-of-JavaScript-ES6-features-a-k-a-ECMAScript-6-and-ES2015/" target="_blank" rel="external">Overview of JavaScript ES6 features (a.k.a ECMAScript 6 and ES2015+)</a></li>
-<li>原文作者: <a href="http://adrianmejia.com/#about" target="_blank" rel="external">Adrian Mejia</a></li>
-<li>译文地址: <a href="http://damonare.github.io/2016/11/03/JavaScript%20ES6%20%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88/#变量的块级作用域" target="_blank" rel="external">L9m</a></li>
-</ol>
-<h2 id="JavaScript-ES6-核心功能一览（ES6-亦作-ECMAScript-6-或-ES2015-）"><a href="#JavaScript-ES6-核心功能一览（ES6-亦作-ECMAScript-6-或-ES2015-）" class="headerlink" title="JavaScript ES6 核心功能一览（ES6 亦作 ECMAScript 6 或 ES2015+）"></a>JavaScript ES6 核心功能一览（ES6 亦作 ECMAScript 6 或 ES2015+）</h2><p>  JavaScript 在过去几年里发生了很大的变化。我仅从原文里拿来几个比较实用的新功能(作为笔记<i class="icon-pencil"></i>来用),当然比较基础的如<code>let const</code>等,没有介绍,想了解可以点击原文地址或译文地址。</p>
-<h2 id="变量的块级作用域"><a href="#变量的块级作用域" class="headerlink" title="变量的块级作用域"></a>变量的块级作用域</h2><p>  这个特性是结合<code>let</code>,<code>const</code>实现的,极大地解决了<code>var</code>带来的麻烦,这里关于它们就不细细介绍了;<br>
-        
-          <a class="article-more-a" href="/2016/11/07/ES6-vs-ES5/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/11/07/ES6-vs-ES5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1076,22 +1089,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1100,7 +1097,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ImmutableJs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PureComponent</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1144,6 +1169,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">constructor</a>
               </li>
              
@@ -1153,14 +1182,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1200,7 +1221,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1220,7 +1241,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">copy</a>
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
