@@ -164,6 +164,178 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-nodeSpider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/08/nodeSpider/">nodeSpider</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/08/nodeSpider/" class="archive-article-date">
+  	<time datetime="2017-02-08T06:32:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="爬虫爬取豆瓣电影-Node-js"><a href="#爬虫爬取豆瓣电影-Node-js" class="headerlink" title="爬虫爬取豆瓣电影(Node.js)"></a>爬虫爬取豆瓣电影(Node.js)</h1><p>初学Node.js，实现对豆瓣电影top250进行爬取，参照<a href="http://kuka.im/2016/05/16/nodejs-spider/" target="_blank" rel="external">Node.js爬取豆瓣电影</a></p>
+<h2 id="引入模块"><a href="#引入模块" class="headerlink" title="引入模块"></a>引入模块</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"><span class="keyword">let</span> https = <span class="built_in">require</span>(<span class="string">'https'</span>),</div><div class="line">    fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</div><div class="line">    path = <span class="built_in">require</span>(<span class="string">'path'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div></pre></td></tr></table></figure>
+<h2 id="创建https-get请求"><a href="#创建https-get请求" class="headerlink" title="创建https get请求"></a>创建https get请求</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">spiderMovie</span>(<span class="params">index</span>) </span>&#123;</div><div class="line">    https.get(<span class="string">'https://movie.douban.com/top250?start='</span> + index, (res) =&gt; &#123;</div><div class="line">        <span class="keyword">let</span> pageSize = <span class="number">25</span>;</div><div class="line">        <span class="keyword">let</span> html = <span class="string">''</span>;</div><div class="line">        <span class="keyword">let</span> movies = [];</div><div class="line">        res.setEncoding(<span class="string">'utf-8'</span>);</div><div class="line"></div><div class="line">        res.on(<span class="string">'data'</span>, (chunk) =&gt; &#123; html += chunk; &#125;);</div><div class="line"></div><div class="line">        res.on(<span class="string">'end'</span>, () =&gt; &#123;</div><div class="line">            <span class="keyword">let</span> $ = cheerio.load(html);</div><div class="line">            $(<span class="string">'.item'</span>).each(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">                <span class="keyword">let</span> picUrl = $(<span class="string">'.pic img'</span>, <span class="keyword">this</span>).attr(<span class="string">'src'</span>);</div><div class="line">                <span class="keyword">let</span> movie = &#123;</div><div class="line">                    title: $(<span class="string">'.title'</span>, <span class="keyword">this</span>).text(),</div><div class="line">                    start: $(<span class="string">'.info .star .rating_num'</span>, <span class="keyword">this</span>).text(),</div><div class="line">                    link: $(<span class="string">'a'</span>, <span class="keyword">this</span>).attr(<span class="string">'href'</span>),</div><div class="line">                    picUrl: picUrl</div><div class="line">                &#125;;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (movie) &#123;</div><div class="line">                    movies.push(movie);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                downloadImg(<span class="string">'./img/'</span>, movie.picUrl);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            saveData(<span class="string">'./data'</span> + (index / pageSize) + <span class="string">'.json'</span>, movies);</div><div class="line">        &#125;);</div><div class="line">    &#125;).on(<span class="string">'error'</span>, (err) =&gt; &#123;</div><div class="line">        <span class="built_in">console</span>.log(err);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/02/08/nodeSpider/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spider</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">es6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/08/nodeSpider/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-getElementPosition" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/07/getElementPosition/">getElementPosition</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/07/getElementPosition/" class="archive-article-date">
+  	<time datetime="2017-02-07T07:05:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2017年以来的第一篇博客"><a href="#2017年以来的第一篇博客" class="headerlink" title="2017年以来的第一篇博客"></a>2017年以来的第一篇博客</h1><p>  开春以来事情比较少就搞起来自己的博客吧！浏览了阮一峰老师关于如何用javascript获取界面元素位置一篇文章为了加深印象并做一个笔记，就取其精华把<br>知识写在自己的博客里方便自己查阅！</p>
+<h2 id="一、获取网页大小："><a href="#一、获取网页大小：" class="headerlink" title="一、获取网页大小："></a>一、获取网页大小：</h2><p>  网页上的每个元素都有<code>clientHeight</code>和<code>clientWidth</code>属性。这两个属性表示元素的<code>content</code>内容部分再加上<code>padding</code>的所占据的视觉面积，不包括<br><code>border</code>和滚动条占用的空间。<br>  因此，document与纳素的clientHeight和clientWidth属性就代表了网页的大小：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getViewport</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode === <span class="string">'BackCompat'</span>) &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            width: <span class="built_in">document</span>.body.clientWidth,</div><div class="line">            height: <span class="built_in">document</span>.body.clientHeight</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            width: <span class="built_in">document</span>.documentElement.clientWidth,</div><div class="line">            height: <span class="built_in">document</span>.documentElement.clientHeight</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="二、获取网页大小的另一种方法："><a href="#二、获取网页大小的另一种方法：" class="headerlink" title="二、获取网页大小的另一种方法："></a>二、获取网页大小的另一种方法：</h2><p>  网页上的每个元素还有scrollHeight和scrollWidth属性，只包含滚动条在内的该元素的视觉面积。<br>  所以，document对象的scrollHeight和scrollWidth属性就是网页的大小，但是当界面不出现滚动条时clientWidth和scrollWidth应该相等，但是实际上<br>不同的浏览器有不同的处理；所以，我们要取它们之间最大的那个：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPageArea</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode === <span class="string">'BackCompat'</span>) &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            width: <span class="built_in">Math</span>.max(<span class="built_in">document</span>.body.scrollWidth, <span class="built_in">document</span>.body.clientWidth),</div><div class="line">            height: <span class="built_in">Math</span>.max(<span class="built_in">document</span>.body.scrollHeight, <span class="built_in">document</span>.body.clientHeight)</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            width: <span class="built_in">Math</span>.max(<span class="built_in">document</span>.documentElement.scrollWidth, <span class="built_in">document</span>.documentElement.clientWidth),</div><div class="line">            height: <span class="built_in">Math</span>.max(<span class="built_in">document</span>.documentElement.scrollHeight, <span class="built_in">document</span>.documentElement.clientHeight)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/02/07/getElementPosition/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">elementPosition</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/07/getElementPosition/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ES6-vs-ES5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -622,6 +794,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -630,7 +814,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,19 +830,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">callback</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">generator</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,6 +878,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -703,22 +903,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,6 +922,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">fetch</a>
               </li>
              
@@ -751,10 +947,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -774,11 +966,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">

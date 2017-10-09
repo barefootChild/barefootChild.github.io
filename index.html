@@ -164,6 +164,191 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-async" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/async/">async</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/09/async/" class="archive-article-date">
+  	<time datetime="2017-10-09T06:00:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h1><h2 id="异步操作处理方法"><a href="#异步操作处理方法" class="headerlink" title="异步操作处理方法"></a>异步操作处理方法</h2><ol>
+<li>Callback</li>
+<li>Promise</li>
+<li>Generator</li>
+<li>Async await</li>
+</ol>
+<h2 id="Callback"><a href="#Callback" class="headerlink" title="Callback"></a>Callback</h2><p>回调很简单就是，就是把一个函数cb作为参数传入另一个函数A里面，然后在函数A里面调用函数cb：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">x, cb</span>) </span>&#123;</div><div class="line">   cb(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面举个通过node读取文件内容的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line">fs.readFile(<span class="string">'hello.txt'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.log(err);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Finished'</span>);</div></pre></td></tr></table></figure></p>
+<p>但是有时候我们可能会在callback里面处理callback，也就是说在回调里面接着写回调。。。这样代码就会越写越深，代码的耦合度会很高，维护性会很差这也就是常说的<code>回调地狱</code>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">a(<span class="function"><span class="keyword">function</span>(<span class="params">resultFromA</span>)</span>&#123;</div><div class="line">  b(resultFromA, <span class="function"><span class="keyword">function</span>(<span class="params">resultFromB</span>)</span>&#123;</div><div class="line">    c(resultFromB, <span class="function"><span class="keyword">function</span>(<span class="params">resultFromC</span>)</span>&#123;</div><div class="line">      d(resultFromC, <span class="function"><span class="keyword">function</span>(<span class="params">resultFromD</span>)</span>&#123;</div><div class="line">        e(resultFromD, <span class="function"><span class="keyword">function</span>(<span class="params">resultFromE</span>)</span>&#123;</div><div class="line">          f(resultFromE, <span class="function"><span class="keyword">function</span>(<span class="params">resultFromF</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(resultFromF);</div><div class="line">          &#125;);</div><div class="line">        &#125;);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/10/09/async/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">async</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">promise</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">callback</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">generator</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/09/async/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-exports" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/exports/">exports</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/02/exports/" class="archive-article-date">
+  	<time datetime="2017-10-02T09:30:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="js模块化"><a href="#js模块化" class="headerlink" title="js模块化"></a>js模块化</h2><p>   js之前书写很混乱，各写各的代码，没有模块的概念，后来出现了CommonJS规范，该规范就是对js模块化的一个定义;CommonJS定义的模块分为：模块标识(module)、模块定义(exports)、模块引用(require)</p>
+<h2 id="exports、module-exports、export、export-default分别用在哪里？"><a href="#exports、module-exports、export、export-default分别用在哪里？" class="headerlink" title="exports、module.exports、export、export default分别用在哪里？"></a>exports、module.exports、export、export default分别用在哪里？</h2><ol>
+<li>require: node和ES6都支持的引入；</li>
+<li>export/import: 只有ES6支持的导出和引入；</li>
+<li>module.exports/exports: 只有node支持的导出；</li>
+</ol>
+        
+          <a class="article-more-a" href="/2017/10/02/exports/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CommonJS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/02/exports/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-PureComponent-ImmunatableJS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -270,23 +455,9 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h1><p>  前端性能优化涉及到从服务器到协议再到宿主环境本身等对方面的知识，业界目前还是以雅虎总结出来的<a href="http://www.cnblogs.com/siqi/p/3655436.html" target="_blank" rel="external">35条前端性能优化的黄金军规</a><br>为主；<br>  web前端优化的目标就是如何让用户更快、更简单易用、更为流畅地使用我们的服务，对于前端来说就是如何让我们的资源体积更小、数量更精简、内容更早呈现，交互更加<br>人性化；业内有一条比较公认的二八原则，就是资源从服务器处理完下发到客户端的浏览器上所占的时间比例大概是整个过程的20%，也就是说服务器端可以优化的空间的效率提<br>升并不会很明显，前端性能优化成为web性能优化重点考虑的领域；</p>
-<ul>
-<li><h2 id="浏览器宿主环境"><a href="#浏览器宿主环境" class="headerlink" title="浏览器宿主环境"></a>浏览器宿主环境</h2><p>1、突破单线程解析渲染阻塞限制<br>  浏览器是一个单线程解析模式去解析渲染从服务器端拿到的html文本，css加载的过程会对后续的脚本资源加载造成阻塞，脚本的加载也会阻塞后续DOM结构的解析造成页面的留白时间增长，<br>一般建议把样式文件放在头部，脚本文件放在DOM节点最末尾，减少阻塞；<br>  针对不需要DOM操作的脚本文件可以采用动态创建script的方式载入，动态载入的脚本不阻塞后续资源的加载；<br>  脚本文件加载可以加上defer或者async属性表示防止阻塞；</p>
-<p>2、利用事件冒泡特性<br>  浏览器时间注册有3个级别定义，DOM0级事件注册（利用DOM元素行内事件属性onclick注册事件回调），DOM1级事件注册（利用DOM元素对象的onclick API在外部注册回调事件），DOM2级事件注册<br>（利用DOM元素对象的addEventListener／attachEvent API在外部注册事件回调）。这里建议就是利用DOM2级在目标DOM的父标签注册回调，收拢事件监听入口同时节约了DOM节点引用开销；</p>
-<p>3、避开Cookie性能bug<br>  Cookie是前端作为前后台登录校验最通用的缓存方案，但浏览器在每次都会往同域名的任何资源的http请求中自动带上cookie信息，但是像css、js、image、这些资源请求是不需要cookie信息的，<br>所以就会造成无端的带宽浪费。优化方案就是CDN异域静态资源服务器部署我们的前端css、js、image资源；</p>
-<p>4、突破浏览器并发连接限制<br>  浏览器针对domain而非页面page做并发连接限制的特性，domain hash的技术优化方案的处理方案是将资源划分域分开部署，但是过多的域划分会增加多余的DNS开销；</p>
-<p>5、利用GPU硬件加速浏览器渲染<br>   针对一些界面渲染过程比较耗时的情况，可以利用CSS3属性开启GPU来加速渲染我们的DOM，一般利用-webkit-transform:translateZ(0)假的3D属性来唤起系统GPU加速渲染功能；</p>
-<ul>
-<li><h2 id="减少http请求数量"><a href="#减少http请求数量" class="headerlink" title="减少http请求数量"></a>减少http请求数量</h2><p>1、css、script合并：gulp、webpack可以很简单地通过任务脚本的方式自动化解决；<br>2、css sprites雪碧图：将网站中常用的一些小图片整合到一张大图上，然后样式里通过background-position二维坐标找到需要的图片；<br>3、font-icon字体图标：字体图标由于是矢量的可以解决图像像素放大变虚的问题；<br>4、图片base64编码传输：base64编码后，可以减少自身的一次http请求；<br>5、图片延时加载：主要用来减少首屏一次性加载图片的数量；具体做法是，给图片标签添加一个行内属性data-image，然后监听浏览器的滚动事件。。。请脑补后续做法</p>
-</li>
-</ul>
-</li>
-<li><h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><p> 1、协议缓存方案：利用http缓存协议头cache-control做304缓存，或者更精确的ETAG设置依据资源的修改时间来设置缓存方案；<br> 2、appCache应用缓存方案；</p>
-</li>
-<li><h2 id="减少http数据请求大小"><a href="#减少http数据请求大小" class="headerlink" title="减少http数据请求大小"></a>减少http数据请求大小</h2><p> 1、css、script、图片压缩：可以通过gulp、webpack自动化脚本定义脚本任务完成；<br> 2、服务器开启gzip压缩，压缩率在30%以上；</p>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2017/09/22/front-end-performance/#more">more >></a>
+        
       
 
       
@@ -557,11 +728,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -729,11 +900,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -752,183 +923,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/05/25/fetch/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/18/Ajax/">Ajax</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/18/Ajax/" class="archive-article-date">
-  	<time datetime="2017-05-18T08:19:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前后端分离的基石Ajax"><a href="#前后端分离的基石Ajax" class="headerlink" title="前后端分离的基石Ajax"></a>前后端分离的基石Ajax</h2><p>   现代浏览器几乎都支持ajax，但是实现的技术分为两种：<a href="http://louiszhai.github.io/2016/11/02/ajax" target="_blank" rel="external">原文地址</a></p>
-<ul>
-<li><p>标准浏览器通过XMLHttpRequest对象实现了ajax功能，创建一个用于发送ajax请求的对象只需要一条语句：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div></pre></td></tr></table></figure>
-</li>
-<li><p>IE浏览器通过XMLHttpRequest或者ActiveXObject对象实现ajax功能；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getXHR</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> xhr;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</div><div class="line">        xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject) &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Msxml2.XMLHTTP"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">                alert(<span class="string">'您的浏览器暂时不支持Ajax！'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> xhr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>所以，为了迎合各大浏览器刁钻的口味，我们不得不提供兼容的方法; </p>
-        
-          <a class="article-more-a" href="/2017/05/18/Ajax/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ajax</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/18/Ajax/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CSS-BFC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/04/CSS-BFC/">CSS-BFC</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/04/CSS-BFC/" class="archive-article-date">
-  	<time datetime="2017-05-04T11:12:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是BFC？"><a href="#什么是BFC？" class="headerlink" title="什么是BFC？"></a>什么是BFC？</h2><p>   之前对于css理解不够深，碰到一些样式问题，虽然通过查资料可以达到预期的效果，但是对背后的原理<br>理解不够深刻；比如：父元素设置overflow:hidden,可以清除浮动；同级块元素之间的margin覆盖；还有<br>一些元素设置了某些属性后就没有按照预期的效果展示，等；这些都有可能是由于某些属性触发了该元素的BFC<br>呈现了BFC的默认样式渲染规则；BFC就是css布局的一个概念，是一块区域，一个环境；接下来就来稍微研究一下BFC；</p>
-<h2 id="BFC的定义："><a href="#BFC的定义：" class="headerlink" title="BFC的定义："></a>BFC的定义：</h2><p>   BFC（Block formatting context），”块级格式化上下文”，是一个独立的渲染区域，规定了内部的<br>Block-level Box如何布局，与这个区域外部毫不相干；<br>   我们常说的文档流有三种，定位流，浮动流和普通流；而普通流就是指BFC中的FC。<br>   FC就是格式化上下文，它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，以及和其<br>他元素之间的关系和作用；<br>    常见的FC有BFC、IFC（行级格式化上下文），还有GFC（网格布局格式化上下文）和FFC（自适应格式化<br>上下文），有兴趣的可以自行了解；</p>
-<h3 id="简单点的解释"><a href="#简单点的解释" class="headerlink" title="简单点的解释"></a>简单点的解释</h3><p>   BFC 可以简单的理解为某个元素的一个 CSS 属性，只不过这个属性不能被开发者显式的修改，拥有这个属<br>性的元素对内部元素和外部元素会表现出一些特性，这就是BFC；</p>
-        
-          <a class="article-more-a" href="/2017/05/04/CSS-BFC/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BFC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front-end</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/04/CSS-BFC/">展开全文 >></a>
         </p>
       
 
@@ -1055,6 +1049,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1063,7 +1069,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,19 +1085,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">callback</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">generator</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,6 +1133,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -1136,22 +1158,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1171,6 +1177,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">fetch</a>
               </li>
              
@@ -1184,10 +1202,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,11 +1221,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">

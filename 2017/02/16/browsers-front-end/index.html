@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="BareFootChild的博客">
 <meta property="og:description" content="浏览器加载，解析，渲染了解浏览器加载、解析、渲染过程的意义  了解浏览器如何进行加载，可以使我们在引用外部样式文件，外部js时，将它们放到合适的位置，使浏览器以最快的速度将文件加载完毕。 了解浏览器如何进行解析，可以使我们在构建DOM结构，组织css选择器时，选择最优的写法，提高浏览器的解析速率。 了解浏览器如何进行渲染，明白渲染的过程，我们在设置元素属性，编写js文件时，可以减少重绘，重新布局的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-03T12:21:55.000Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/30/5bbd1038b8e6d9501b73e43bab9495cd?imageView2/0/w/1280/h/960">
+<meta property="og:updated_time" content="2017-10-09T05:57:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="browsers-front-end">
 <meta name="twitter:description" content="浏览器加载，解析，渲染了解浏览器加载、解析、渲染过程的意义  了解浏览器如何进行加载，可以使我们在引用外部样式文件，外部js时，将它们放到合适的位置，使浏览器以最快的速度将文件加载完毕。 了解浏览器如何进行解析，可以使我们在构建DOM结构，组织css选择器时，选择最优的写法，提高浏览器的解析速率。 了解浏览器如何进行渲染，明白渲染的过程，我们在设置元素属性，编写js文件时，可以减少重绘，重新布局的">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/9/30/5bbd1038b8e6d9501b73e43bab9495cd?imageView2/0/w/1280/h/960">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -217,7 +219,7 @@ var _hmt = _hmt || [];
 <li><code>css解析</code>将css文件解析为样式表对象。</li>
 <li><code>js解析</code></li>
 </ul>
-<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>  即为构建渲染树的过程，是原dom树的可视化表示，构建这棵树是为了以正确的的顺序绘制文档内容。<br>  渲染树和DOM树的关系，不可见的dom元素不会被插入渲染树中。一些节点位置为绝对或浮动定位，这些节点会在文本流之外，因此会在两棵树的不同位置，渲染树标识出<br>真实的位置，并用一个占位结构标识出他们原来的位置。</p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>  即为构建渲染树的过程，是原dom树的可视化表示，构建这棵树是为了以正确的的顺序绘制文档内容。<br>  渲染树和DOM树的关系，不可见的dom元素不会被插入渲染树中。一些节点位置为绝对或浮动定位，这些节点会在文本流之外，因此会在两棵树的不同位置，渲染树标识出<br>真实的位置，并用一个占位结构标识出他们原来的位置。<br>  下图表示浏览器渲染展示网页的主流程：<br>  <img src="https://user-gold-cdn.xitu.io/2017/9/30/5bbd1038b8e6d9501b73e43bab9495cd?imageView2/0/w/1280/h/960" alt="Render stream"></p>
 <h2 id="渲染最大的难题就是为每一个dom节点计算他的最终样式。"><a href="#渲染最大的难题就是为每一个dom节点计算他的最终样式。" class="headerlink" title="渲染最大的难题就是为每一个dom节点计算他的最终样式。"></a>渲染最大的难题就是为每一个dom节点计算他的最终样式。</h2><p>为每一个元素查找到匹配的样式规则，需要遍历整个规则表；</p>
 <ol>
 <li>样式数据是非常大的结构，保存数据很耗内存。</li>
@@ -494,6 +496,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -502,7 +516,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">front-end</a>
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,19 +532,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">callback</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">generator</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,6 +580,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -575,22 +605,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">cookie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,6 +624,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">fetch</a>
               </li>
              
@@ -623,10 +649,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -646,11 +668,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">copy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
