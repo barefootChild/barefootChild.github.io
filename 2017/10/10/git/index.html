@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://barefootChild.github.io">
-  <title>constructor | BareFootChild的博客</title>
+  <title>git | BareFootChild的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="构造函数在`JavaScript`中，new关键字可以让一个函数变得与众不同；eg: 12345function demo() &amp;#123;    console.log(this);&amp;#125;demo(); // windownew demo(); // demo 很显然，使用new之后，函数内部发生了一些微妙的变化，改变了this的指向；但是new关键字到底做了什么呢？可以简单地用四句话表述">
-<meta name="keywords" content="javascript,constructor,prototype,this">
+  <meta name="description" content="git工作原理先用一张图解释一下git的工作原理：   workspace:工作区，执行git add *命令就把改动提交到了暂存区，执行git pull命令将远程仓库的数据拉到当前分支并合并，执行git checkout branch-name切换分支 index：暂存区，执行git commit -m ‘说明’命令就把改动提交到了仓库区（当前分支） repository：仓库区（本地仓库），执">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="constructor">
-<meta property="og:url" content="https://barefootChild.github.io/2017/03/17/constructor/index.html">
+<meta property="og:title" content="git">
+<meta property="og:url" content="https://barefootChild.github.io/2017/10/10/git/index.html">
 <meta property="og:site_name" content="BareFootChild的博客">
-<meta property="og:description" content="构造函数在`JavaScript`中，new关键字可以让一个函数变得与众不同；eg: 12345function demo() &amp;#123;    console.log(this);&amp;#125;demo(); // windownew demo(); // demo 很显然，使用new之后，函数内部发生了一些微妙的变化，改变了this的指向；但是new关键字到底做了什么呢？可以简单地用四句话表述">
+<meta property="og:description" content="git工作原理先用一张图解释一下git的工作原理：   workspace:工作区，执行git add *命令就把改动提交到了暂存区，执行git pull命令将远程仓库的数据拉到当前分支并合并，执行git checkout branch-name切换分支 index：暂存区，执行git commit -m ‘说明’命令就把改动提交到了仓库区（当前分支） repository：仓库区（本地仓库），执">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-03T12:21:55.000Z">
+<meta property="og:image" content="https://dn-Myg6wSTV.qbox.me/fea7461e85aee80bbe96.png?imageView2/0/w/1280/h/960">
+<meta property="og:updated_time" content="2017-10-10T07:07:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="constructor">
-<meta name="twitter:description" content="构造函数在`JavaScript`中，new关键字可以让一个函数变得与众不同；eg: 12345function demo() &amp;#123;    console.log(this);&amp;#125;demo(); // windownew demo(); // demo 很显然，使用new之后，函数内部发生了一些微妙的变化，改变了this的指向；但是new关键字到底做了什么呢？可以简单地用四句话表述">
+<meta name="twitter:title" content="git">
+<meta name="twitter:description" content="git工作原理先用一张图解释一下git的工作原理：   workspace:工作区，执行git add *命令就把改动提交到了暂存区，执行git pull命令将远程仓库的数据拉到当前分支并合并，执行git checkout branch-name切换分支 index：暂存区，执行git commit -m ‘说明’命令就把改动提交到了仓库区（当前分支） repository：仓库区（本地仓库），执">
+<meta name="twitter:image" content="https://dn-Myg6wSTV.qbox.me/fea7461e85aee80bbe96.png?imageView2/0/w/1280/h/960">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -163,41 +165,84 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-constructor" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-git" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      constructor
+      git
     </h1>
   
 
         
-        <a href="/2017/03/17/constructor/" class="archive-article-date">
-  	<time datetime="2017-03-17T05:53:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-17</time>
+        <a href="/2017/10/10/git/" class="archive-article-date">
+  	<time datetime="2017-10-10T04:55:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><pre><code>在`JavaScript`中，new关键字可以让一个函数变得与众不同；eg:
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">demo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line">demo(); <span class="comment">// window</span></div><div class="line"><span class="keyword">new</span> demo(); <span class="comment">// demo</span></div></pre></td></tr></table></figure>
-<pre><code>很显然，使用new之后，函数内部发生了一些微妙的变化，改变了this的指向；但是new关键字到底做了什么呢？可以简单地用四句话表述：
-</code></pre><ol>
-<li>声明一个中间对象Object；</li>
-<li>将中间对象的原型指向构造函数的原型；</li>
-<li>将构造函数的this指向该中间对象,并执行构造函数内部的代码；</li>
-<li>返回该中间对象，即返回实例对象；</li>
+        <h2 id="git工作原理"><a href="#git工作原理" class="headerlink" title="git工作原理"></a>git工作原理</h2><p>先用一张图解释一下git的工作原理：</p>
+<p><img src="https://dn-Myg6wSTV.qbox.me/fea7461e85aee80bbe96.png?imageView2/0/w/1280/h/960" alt="git"></p>
+<ol>
+<li>workspace:工作区，执行git add *命令就把改动提交到了暂存区，执行git pull命令将远程仓库的数据拉到当前分支并合并，执行git checkout branch-name切换分支</li>
+<li>index：暂存区，执行git commit -m ‘说明’命令就把改动提交到了仓库区（当前分支）</li>
+<li>repository：仓库区（本地仓库），执行git push origin master 提交到远程仓库，执行git clone 地址将克隆远程仓库到本地</li>
+<li>remote: 远程仓库，就是类似github，coding等网站所提供的仓库</li>
 </ol>
-<p>这四句话该如何用代码表示呢？</p>
 <a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//首先创建一个构造函数</span></div><div class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name, age</span>) </span>&#123;</div><div class="line">     <span class="keyword">this</span>.name = name;</div><div class="line">     <span class="keyword">this</span>.age = age;</div><div class="line">     <span class="keyword">this</span>.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">     &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//模拟new关键字的执行过程，将构造函数以参数的形式传入</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">New</span>(<span class="params">func</span>) </span>&#123;</div><div class="line"> <span class="comment">//声明一个中间对象，该对象为最终返回的实例</span></div><div class="line">     <span class="keyword">var</span> res = &#123;&#125;;</div><div class="line">     <span class="keyword">if</span> (func.prototype !== <span class="literal">null</span>) &#123;</div><div class="line">         <span class="comment">//将该中间对象的原型指向该函数的原型</span></div><div class="line">         res.__proto__ = func.prototype;</div><div class="line">     &#125;</div><div class="line">     <span class="comment">//ret为构造函数执行的结果，这里运用apply，将构造函数内部的this指向res，并执行构造函数内部的代码</span></div><div class="line">     <span class="keyword">var</span> ret = func.apply(res, <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>));</div><div class="line">     <span class="comment">//如果我们在构造函数中指明了返回对象时，那么new的执行结果就是该返回对象</span></div><div class="line">     <span class="keyword">if</span> ((<span class="keyword">typeof</span> ret === <span class="string">'object'</span> || <span class="keyword">typeof</span> ret === <span class="string">'function'</span>) &amp;&amp; ret !== <span class="literal">null</span>) &#123;</div><div class="line">         <span class="keyword">return</span> ret;</div><div class="line">     &#125;</div><div class="line">     <span class="comment">//如果没有明确指明返回对象，则默认返回res，这个res就是实例对象</span></div><div class="line">     <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"><span class="comment">//通过new声明创建实例，这里的p1，实际接受的就是new返回的res</span></div><div class="line"><span class="keyword">var</span> p1 = New(Person, <span class="string">'zys'</span>, <span class="number">23</span>);</div><div class="line"><span class="built_in">console</span>.log(p1.getName());   <span class="comment">//zys</span></div><div class="line"><span class="built_in">console</span>.log(p1 <span class="keyword">instanceof</span> Person);   <span class="comment">//true</span></div></pre></td></tr></table></figure>
-<pre><code>JavaScript内部再通过其他的特殊处理，将New(Person, &apos;zys&apos;, 23);等效于new Person(&apos;zys&apos;, 23);
-这样new关键字的神秘面纱就这样被揭开了！！！
-</code></pre>
+<h2 id="忽略特定的文件"><a href="#忽略特定的文件" class="headerlink" title="忽略特定的文件"></a>忽略特定的文件</h2><p>可以配置Git忽略特定的文件或者文件夹，这些配置都写在.gitignore文件中</p>
+<h2 id="追踪空的文件夹"><a href="#追踪空的文件夹" class="headerlink" title="追踪空的文件夹"></a>追踪空的文件夹</h2><p>git会忽略空的文件夹。但是如果想让版本控制包括空的文件夹，习惯上会在空的文件夹下创建一个.gitkeep文件；实际上只要文件夹下有文件，这个文件夹就会在版本控制范围内，所以该文件名是不是.gitkeep根本不重要；</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li>显示当前Git配置<br>git config –list</li>
+<li>设置提交代码时的用户信息<br>git config [–global] user.name ‘[name]’<br>git config [–global] user.email ‘[email address]’</li>
+</ul>
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><ul>
+<li>在当前目录创建一个文件夹<br>mkdir [project-name]</li>
+<li>在当前目录创建一个Git代码库<br>git init</li>
+<li>新建一个目录，并将其初始化为Git代码库<br>git init [project-name]</li>
+<li>下载一个项目和它的整个代码历史<br>git clone [url]</li>
+</ul>
+<h2 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h2><ul>
+<li>添加当前目录所有变动到暂存区<br>git add .</li>
+<li>提交暂存区到仓库区<br>git commit -m [message]</li>
+<li>为远程Git更名为origin<br>git remote add origin git@github.com:barefootChild/A-frame_demo.git</li>
+<li>推送本次修改，首次推送需要加上-u，origin是远程Git名字，可以自定义，master是默认分支，可以根据具体所在分支进行修改<br>git push -u origin master</li>
+<li>提交工作区自上次commit之后的变化，直接到仓库区<br>git commit -a</li>
+<li>使用一次新的commit，替代上一次提交，如果代码没有任何变化，则用来改写上一次commit的提交信息<br>git commit –amend -m [message]</li>
+</ul>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ul>
+<li>列出所有分支<br>git branch</li>
+<li>列出所有远程分支<br>git branch -r</li>
+<li>列出所有本地分支和远程分支<br>git branch -a</li>
+<li>新建一个分支，但仍然停留在当前分支<br>git branch [branch-name]</li>
+<li>新建一个分支并切换至该分支<br>git checkout -b [branch-name]</li>
+<li>新建一个分支，指向指定commit<br>git branch [branch-name] [commit]</li>
+<li>新建一个分支，与指定的远程分支建立追踪关系<br>git branch –track [branch] [remote-branch]</li>
+<li>切换到另一个分支，并更新工作区<br>git checkout [branch-name]</li>
+<li>合并指定分支到当前分支<br>git merge [branch-name]</li>
+<li>选择一个commit，合并进当前分支<br>git cherry-pick [commit]</li>
+<li>删除分支<br>git branch -d [branch-name]</li>
+<li>删除远端分支<br>git branch -dr [branch-name]<br>git push origin –delete [branch-name]</li>
+</ul>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><ul>
+<li>列出所有标签<br>git tag</li>
+<li>新建一个tag在当前commit<br>git tag [tag]</li>
+<li>新建一个tag在指定commit<br>git tag [tag] [commit]</li>
+<li>删除本地tag<br>git tag -d [tag]</li>
+<li>新建一个分支，指向某个tag<br>git checkout -b [branch-name] [tag]</li>
+</ul>
+<h2 id="撤销某些更改"><a href="#撤销某些更改" class="headerlink" title="撤销某些更改"></a>撤销某些更改</h2><ul>
+<li>撤销对某个文件的修改<br>git checkout [file]</li>
+<li>撤销暂存的文件<br>git reset [file]</li>
+<li>重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致<br>git reset –hard [commit]</li>
+<li>新建一个commit，用来撤销指定的commit<br>git revert [commit]</li>
+<li>暂时将未提交的变化移除，稍后再移入<br>git stash<br>git stash pop</li>
+</ul>
+
       
 
       
@@ -241,19 +286,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">constructor</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">prototype</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">this</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
@@ -309,7 +342,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/03/17/constructor/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/10/10/git/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -323,18 +356,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/03/17/mobileQuestion/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mobileQuestion
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/16/react-life/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">react-lifecycle</div>
+    <a href="/2017/10/09/async/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">async</div>
       <i class="icon-circle-right"></i>
     </a>
   
