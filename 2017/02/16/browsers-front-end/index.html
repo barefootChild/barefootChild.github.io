@@ -17,7 +17,7 @@
 <meta property="og:description" content="浏览器加载，解析，渲染了解浏览器加载、解析、渲染过程的意义  了解浏览器如何进行加载，可以使我们在引用外部样式文件，外部js时，将它们放到合适的位置，使浏览器以最快的速度将文件加载完毕。 了解浏览器如何进行解析，可以使我们在构建DOM结构，组织css选择器时，选择最优的写法，提高浏览器的解析速率。 了解浏览器如何进行渲染，明白渲染的过程，我们在设置元素属性，编写js文件时，可以减少重绘，重新布局的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/9/30/5bbd1038b8e6d9501b73e43bab9495cd?imageView2/0/w/1280/h/960">
-<meta property="og:updated_time" content="2017-10-09T05:57:34.000Z">
+<meta property="og:updated_time" content="2017-10-16T06:17:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="browsers-front-end">
 <meta name="twitter:description" content="浏览器加载，解析，渲染了解浏览器加载、解析、渲染过程的意义  了解浏览器如何进行加载，可以使我们在引用外部样式文件，外部js时，将它们放到合适的位置，使浏览器以最快的速度将文件加载完毕。 了解浏览器如何进行解析，可以使我们在构建DOM结构，组织css选择器时，选择最优的写法，提高浏览器的解析速率。 了解浏览器如何进行渲染，明白渲染的过程，我们在设置元素属性，编写js文件时，可以减少重绘，重新布局的">
@@ -200,7 +200,38 @@ var _hmt = _hmt || [];
 <li>浏览器解析http response后，需要下载html文件，以及html文件内包含的外部引用文件，以及文件内涉及的图片或者多媒体文件。</li>
 </ul>
 <a id="more"></a>
-<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>  即获取资源文件的过程，不同浏览器，以及他们不同版本在实现这一过程时，会有不同的实现效果（资源之间相互阻塞）。加载过程中遇到外部css文件，浏览器另外发出<br>一个请求，来获取css文件。遇到图片资源，浏览器也会另外发出请求，来获取图片资源。这是异步请求，不会影响到html文档进行加载，但是当文档加载过程中遇到js文件<br>，html文档会挂起渲染（加载解析渲染同步）的线程，不仅要等待js文件加载完毕，还要等待解析执行完毕，才可以恢复html文档的渲染线程。</p>
+<h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><ul>
+<li><h3 id="浏览器组成"><a href="#浏览器组成" class="headerlink" title="浏览器组成"></a>浏览器组成</h3></li>
+</ul>
+<ol>
+<li>用户界面</li>
+<li>浏览器内核：浏览器引擎(查询操作渲染引擎的接口)、渲染引擎、js引擎、网络(http请求)</li>
+<li>数据存储</li>
+<li>js引擎(IE9+: Chakra、firefox: monkey、chrome: v8) </li>
+<li>渲染引擎(firefox: gecko、chrome/safari: webkit)</li>
+<li>线程：JS引擎线程、GUI渲染引擎、浏览器事件触发引擎、http请求线程、计时器线程、EventLoop轮询处理线程</li>
+</ol>
+<ul>
+<li><h3 id="javascript引擎"><a href="#javascript引擎" class="headerlink" title="javascript引擎"></a>javascript引擎</h3><p>js引擎是基于事件驱动的，采用的是单线程运行机制；<br>js可以操作DOM元素，从而影响到GUI的渲染结果，因此js引擎线程和GUI渲染线程是互斥的；也就是说js引擎处于运行状态时，GUI线程将处于冻结状态；</p>
+</li>
+<li><h3 id="javascript单线程"><a href="#javascript单线程" class="headerlink" title="javascript单线程"></a>javascript单线程</h3><p>javascript引擎负责解释和执行javascript代码的线程只有一个，称为主线程；js还有其他的线程称为工作线程；<br>主线程上只执行同步任务；<br>H5提出了Web Worker标准，允许js创建多个线程，但是完全受主线程控制，且不可以操作DOM；</p>
+</li>
+<li><h3 id="工作线程"><a href="#工作线程" class="headerlink" title="工作线程"></a>工作线程</h3><p>浏览器还有其他线程，例如：<br>处理ajax的线程，dom时间线程，定时器线程，读写文件的线程等，这些被称为工作线程；这些线程可能存在于js引擎之中或者之外，称为工作线程，工作线程的任务完成后，会推入到一个任务队列；</p>
+</li>
+</ul>
+<h2 id="Javascript的异步编程"><a href="#Javascript的异步编程" class="headerlink" title="Javascript的异步编程"></a>Javascript的异步编程</h2><p>js引擎只执行同步任务，异步任务会有工作线程来执行；</p>
+<ul>
+<li><h3 id="异步过程"><a href="#异步过程" class="headerlink" title="异步过程"></a>异步过程</h3><p>当需要进行异步操作(定时器，ajax请求，dom事件注册)，主线程会发一个异步任务的请求，相应的工作线程接受请求，相应的工作线程接受请求；当工作线程完成工作之后，通知主线程；主线程接收到通知之后，会执行一定的操作(回调函数);</p>
+</li>
+<li><h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><p>主线程和工作线程之间的通知机制叫做事件循环。<br>调用栈：主线程执行时生成的调用栈；<br>任务队列：工作线程完成任务后会把消息推到一个任务队列，消息就是注册时的回调函数；<br>当调用栈为空时，主线程会从任务队列里取出一条消息并放入当前的调用栈当中执行，主线程会一直重复这个动作直到消息队列为空，这个过程就叫做事件循环；</p>
+</li>
+<li><h3 id="渲染线程和js线程的互斥"><a href="#渲染线程和js线程的互斥" class="headerlink" title="渲染线程和js线程的互斥"></a>渲染线程和js线程的互斥</h3><p>渲染线程和js线程是互斥的，在js引擎执行时，渲染线程会被挂起</p>
+</li>
+<li><h3 id="为什么会阻塞"><a href="#为什么会阻塞" class="headerlink" title="为什么会阻塞"></a>为什么会阻塞</h3><p>js在浏览器中需要被下载、解释、执行；html中script标签是阻塞的，也就是说顺序下载、解释、执行；<br>浏览器会在js执行后决定当前文档是否需要进行重新渲染或者重排；<br>js引擎线程和GUI线程是互斥的，所以js执行时会阻塞页面的渲染；</p>
+</li>
+</ul>
+<p>下载虽然是异步的，但是执行还是同步的；先出现的script标签一定是先执行的，即使它是最后一个下载完成的；</p>
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>  即获取资源文件的过程，不同浏览器，以及他们不同版本在实现这一过程时，会有不同的实现效果（资源之间相互阻塞）。加载过程中遇到外部css文件，浏览器另外发出一个请求，来获取css文件。遇到图片资源，浏览器也会另外发出请求，来获取图片资源。这是异步请求，不会影响到html文档进行加载，但是当文档加载过程中遇到js文件，html文档会挂起渲染（加载解析渲染同步）的线程，不仅要等待js文件加载完毕，还要等待解析执行完毕，才可以恢复html文档的渲染线程。</p>
 <blockquote>
 <ul>
 <li>原因：JS有可能会修改DOM，最为经典的document.write，这意味着，在JS执行完成之前，后续所有资源的下载可能是没有必要的，这是js阻塞后续资源下载的根本原因。</li>
@@ -219,7 +250,8 @@ var _hmt = _hmt || [];
 <li><code>css解析</code>将css文件解析为样式表对象。</li>
 <li><code>js解析</code></li>
 </ul>
-<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>  即为构建渲染树的过程，是原dom树的可视化表示，构建这棵树是为了以正确的的顺序绘制文档内容。<br>  渲染树和DOM树的关系，不可见的dom元素不会被插入渲染树中。一些节点位置为绝对或浮动定位，这些节点会在文本流之外，因此会在两棵树的不同位置，渲染树标识出<br>真实的位置，并用一个占位结构标识出他们原来的位置。<br>  下图表示浏览器渲染展示网页的主流程：<br>  <img src="https://user-gold-cdn.xitu.io/2017/9/30/5bbd1038b8e6d9501b73e43bab9495cd?imageView2/0/w/1280/h/960" alt="Render stream"></p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>  即为构建渲染树的过程，是原dom树的可视化表示，构建这棵树是为了以正确的的顺序绘制文档内容。<br>  渲染树和DOM树的关系，不可见的dom元素不会被插入渲染树中。一些节点位置为绝对或浮动定位，这些节点会在文本流之外，因此会在两棵树的不同位置，渲染树标识出真实的位置，并用一个占位结构标识出他们原来的位置。<br>  下图表示浏览器渲染展示网页的主流程：</p>
+<p>  <img src="https://user-gold-cdn.xitu.io/2017/9/30/5bbd1038b8e6d9501b73e43bab9495cd?imageView2/0/w/1280/h/960" alt="Render stream"></p>
 <h2 id="渲染最大的难题就是为每一个dom节点计算他的最终样式。"><a href="#渲染最大的难题就是为每一个dom节点计算他的最终样式。" class="headerlink" title="渲染最大的难题就是为每一个dom节点计算他的最终样式。"></a>渲染最大的难题就是为每一个dom节点计算他的最终样式。</h2><p>为每一个元素查找到匹配的样式规则，需要遍历整个规则表；</p>
 <ol>
 <li>样式数据是非常大的结构，保存数据很耗内存。</li>
@@ -520,10 +552,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
@@ -536,15 +564,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">reactive</a>
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,22 +584,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">async</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">callback</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">generator</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -589,6 +593,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">browser</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">reactive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,6 +624,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">callback</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">generator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -624,6 +656,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">request</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redux</a>
               </li>
              
@@ -633,22 +673,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">fetch</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">request</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,15 +688,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">copy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">elementPosition</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">copy</a>
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,6 +709,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">es6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
