@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://barefootChild.github.io">
-  <title>createBlog | BareFootChild的博客</title>
+  <title>formatContext | BareFootChild的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="利用hexo和github pages搭建自己的博客何为Hexo? hexo的官方定义是:一个简单地,轻量的,基于node的一个静态博客网站框架;可以方便快捷地生成静态网页托管在github上;  何为gitHub Pages? 可以被认为是用户编写的,托管在github上的静态网页.空间免费哦!  何为github? 这个问题小编就不回答了,偷偷告诉你github是一个程序员必不可少的”左膀右臂">
-<meta name="keywords" content="hexo,git,yilia,gitHub Pages">
+  <meta name="description" content="原文地址 格式化上下文默认情况下，网页上的所有内容都是放在一个个矩形盒子里按照元素在HTML中的先后顺序从左至右自上而下一个接一个排列摆放的。如下图：在图中可以看到，有些元素的盒子被渲染为完整的一行，如h1、p、div；而有一些元素的盒子则被渲染为水平排列，直到该行被占满然后换行，如span、a、strong 这主要是因为不同的盒子按照不同的格式化上下文来布局，每个格式化上下文都拥有一套不同的渲染">
+<meta name="keywords" content="BFC,css,IFC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="createBlog">
-<meta property="og:url" content="https://barefootChild.github.io/2016/11/01/createBlog/index.html">
+<meta property="og:title" content="formatContext">
+<meta property="og:url" content="https://barefootChild.github.io/2017/10/26/formatContext/index.html">
 <meta property="og:site_name" content="BareFootChild的博客">
-<meta property="og:description" content="利用hexo和github pages搭建自己的博客何为Hexo? hexo的官方定义是:一个简单地,轻量的,基于node的一个静态博客网站框架;可以方便快捷地生成静态网页托管在github上;  何为gitHub Pages? 可以被认为是用户编写的,托管在github上的静态网页.空间免费哦!  何为github? 这个问题小编就不回答了,偷偷告诉你github是一个程序员必不可少的”左膀右臂">
+<meta property="og:description" content="原文地址 格式化上下文默认情况下，网页上的所有内容都是放在一个个矩形盒子里按照元素在HTML中的先后顺序从左至右自上而下一个接一个排列摆放的。如下图：在图中可以看到，有些元素的盒子被渲染为完整的一行，如h1、p、div；而有一些元素的盒子则被渲染为水平排列，直到该行被占满然后换行，如span、a、strong 这主要是因为不同的盒子按照不同的格式化上下文来布局，每个格式化上下文都拥有一套不同的渲染">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-03T12:21:55.000Z">
+<meta property="og:image" content="http://coding.imweb.io/img/p3/vfm/vfm.png">
+<meta property="og:image" content="http://layout.imweb.io/img/2017-09-26-17-41-31.png">
+<meta property="og:image" content="http://layout.imweb.io/img/2017-09-26-18-04-25.png">
+<meta property="og:updated_time" content="2017-10-26T03:54:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="createBlog">
-<meta name="twitter:description" content="利用hexo和github pages搭建自己的博客何为Hexo? hexo的官方定义是:一个简单地,轻量的,基于node的一个静态博客网站框架;可以方便快捷地生成静态网页托管在github上;  何为gitHub Pages? 可以被认为是用户编写的,托管在github上的静态网页.空间免费哦!  何为github? 这个问题小编就不回答了,偷偷告诉你github是一个程序员必不可少的”左膀右臂">
+<meta name="twitter:title" content="formatContext">
+<meta name="twitter:description" content="原文地址 格式化上下文默认情况下，网页上的所有内容都是放在一个个矩形盒子里按照元素在HTML中的先后顺序从左至右自上而下一个接一个排列摆放的。如下图：在图中可以看到，有些元素的盒子被渲染为完整的一行，如h1、p、div；而有一些元素的盒子则被渲染为水平排列，直到该行被占满然后换行，如span、a、strong 这主要是因为不同的盒子按照不同的格式化上下文来布局，每个格式化上下文都拥有一套不同的渲染">
+<meta name="twitter:image" content="http://coding.imweb.io/img/p3/vfm/vfm.png">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -163,84 +167,65 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-createBlog" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-formatContext" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      createBlog
+      formatContext
     </h1>
   
 
         
-        <a href="/2016/11/01/createBlog/" class="archive-article-date">
-  	<time datetime="2016-11-01T11:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-01</time>
+        <a href="/2017/10/26/formatContext/" class="archive-article-date">
+  	<time datetime="2017-10-26T02:35:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="利用hexo和github-pages搭建自己的博客"><a href="#利用hexo和github-pages搭建自己的博客" class="headerlink" title="利用hexo和github pages搭建自己的博客"></a>利用hexo和github pages搭建自己的博客</h1><h2 id="何为Hexo"><a href="#何为Hexo" class="headerlink" title="何为Hexo?"></a>何为Hexo?</h2><blockquote>
-<p><code>hexo</code>的官方定义是:一个简单地,轻量的,基于node的一个静态博客网站框架;可以方便快捷地生成静态网页托管在github上;</p>
-</blockquote>
-<h2 id="何为gitHub-Pages"><a href="#何为gitHub-Pages" class="headerlink" title="何为gitHub Pages?"></a>何为gitHub Pages?</h2><blockquote>
-<p>可以被认为是用户编写的,托管在github上的静态网页.空间免费哦!<i class="icon-price-tags"></i></p>
-</blockquote>
-<h2 id="何为github"><a href="#何为github" class="headerlink" title="何为github?"></a>何为github?</h2><blockquote>
-<p>这个问题小编<i class="icon-user"></i>就不回答了,偷偷告诉你github是一个程序员必不可少的”左膀右臂”;有了它,你会觉得…还没有?那还在等什么?赶紧点击<a href="https://github.com" target="_blank" rel="external">注册</a>啊!</p>
-</blockquote>
-<p>搭建过程需要配置很多文件,也需要很多知识(那种看看就会的,相信我,<code>绝对比做一个产品的需求简单多了</code>),下面就进入正题吧!</p>
+        <p><a href="http://layout.imweb.io/article/formatting-context.html" target="_blank" rel="external">原文地址</a></p>
+<h2 id="格式化上下文"><a href="#格式化上下文" class="headerlink" title="格式化上下文"></a>格式化上下文</h2><p>默认情况下，网页上的所有内容都是放在一个个矩形盒子里按照元素在HTML中的先后顺序从左至右自上而下一个接一个排列摆放的。如下图：<br><img src="http://coding.imweb.io/img/p3/vfm/vfm.png" alt="page"><br>在图中可以看到，有些元素的盒子被渲染为完整的一行，如h1、p、div；而有一些元素的盒子则被渲染为水平排列，直到该行被占满然后换行，如span、a、strong</p>
+<p>这主要是因为不同的盒子按照不同的格式化上下文来布局，每个格式化上下文都拥有一套不同的渲染规则，他决定了其子元素如何定位，以及和其他元素的关系和相互作用。就如同使用不同的容器来装水，容器不同，呈现出来水的形态也不一样：<br><img src="http://layout.imweb.io/img/2017-09-26-17-41-31.png" alt="water"><br>最基本的两个格式化上下文就是：格式化上下文（BFC），行内格式化上下文（IFC）</p>
 <a id="more"></a>
-<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><p>安装?点击去<a href="https://www.npmjs.com/" target="_blank" rel="external">官网</a>啊!</p>
-<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>yes,点击去<a href="https://git-scm.com/book/en/v2" target="_blank" rel="external">官网</a>;</p>
-<h2 id="注册github-不多说了-作为程序员没有github账号的话-允许我鄙视5秒钟"><a href="#注册github-不多说了-作为程序员没有github账号的话-允许我鄙视5秒钟" class="headerlink" title="注册github(不多说了,作为程序员没有github账号的话,允许我鄙视5秒钟)"></a>注册github(不多说了,作为程序员没有github账号的话,允许我鄙视5秒钟)</h2><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><blockquote>
-<p>npm install -g hexo</p>
-</blockquote>
-<p>然后进行初始化我们的博客项目:</p>
-<blockquote>
-<p>hexo init <folder></folder></p>
-</blockquote>
-<p>这样就生成了我们博客项目的文件夹,然后到该文件夹下看一下生成的文件内容,在该文件夹下执行下面代码,安装依赖:</p>
-<blockquote>
-<p>npm install</p>
-</blockquote>
-<p>在该文件夹下你会发现下面这些文件:</p>
-<ol>
-<li>_config.yml : 博客项目的配置文件</li>
-<li>package.json : 项目源信息以及项目依赖信息</li>
-<li>scaffolds : 脚手架文件夹，当我们创建一个新的文章时，hexo就是根据scaffolds内的文件工作的</li>
-<li>source : 博客项目源文件夹，里面的文件将被渲染处理并放入public文件夹</li>
-<li>themes : 主题文件夹(我们可以通过更改该文件下的文件内容,更改我们博客的主题风格)</li>
-</ol>
-<p>接下来我们就可以写新的文章了,通过下面的命令:</p>
-<blockquote>
-<p>hexo new ‘filename’</p>
-</blockquote>
-<p>执行完后我们会看到在<code>source/_posts</code>文件夹下会产生一个filename.md文件,该文件是按照markdown规格来写的,用来生成我们新博客的内容,所以如果不会就点击<a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">学习MarkDown</a><br>写完文章后需要执行下面的命令进行编译:</p>
-<blockquote>
-<p>hexo generate</p>
-</blockquote>
-<p>And then, execute next:</p>
-<blockquote>
-<p>hexo server</p>
-</blockquote>
-<p>就在本地4000端口起了服务了;还等什么?localhost:4000看效果啊!(<i class="icon-hour-glass"></i>小编忘记吃药了,见谅)<br>很神奇的发现带有默认主题的博客就出现了,为什么会有样式?为什么?为什么?不要激动,还记得那个<code>themes</code>文件夹么?对就是它,不要怕点进去,看一下代码,尤其是<code>source-src</code>文件夹下的文件,很亲切吧,想改成自己喜欢的?just do it!<br>如果想切换主题风格,点击<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">hexo主题库</a>自由地切换吧,安装新的主题到<code>themes</code>文件夹下,然后要对该主题下的<code>_config.yml</code>文件进行配置<i class="icon-alarm"></i>(不是<br>项目根目录下的<code>_config.yml</code>,它也需要配置,但有别的用处)</p>
-<h2 id="部署到github-默认你已经有账号"><a href="#部署到github-默认你已经有账号" class="headerlink" title="部署到github(默认你已经有账号)"></a>部署到github(默认你已经有账号)</h2><p>在自己的账户下创建一个仓库，命名为 <code>username.github.io</code> ，注意：这个仓库名称是固定的，将<code>username</code>替换成你的github用户名。然后修改博客根目录下的配置文件<code>_config.ylm</code>:</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># Deployment</span></div><div class="line"><span class="meta">## Docs: http:<span class="comment">//hexo.io/docs/deployment.html</span></span></div><div class="line"><span class="symbol">deploy:</span></div><div class="line"><span class="symbol">  type:</span> git</div><div class="line"><span class="symbol">  repo:</span> https:<span class="comment">//github.com/username/username.github.io.git</span></div><div class="line"><span class="symbol">  branch:</span> master</div></pre></td></tr></table></figure>
-<p>配置好之后，还需要在自己的github上添加 SSH Key，如何生成SSH Key以及如何配置添加,请点击<a href="https://help.github.com/articles/generating-an-ssh-key" target="_blank" rel="external">SSH Key</a>;<br>添加SSH Key后安装一个插件:</p>
-<blockquote>
-<p>npm install –save hexo-deploy-git</p>
-</blockquote>
-<p>然后,last step:</p>
-<blockquote>
-<p>hexo deploy</p>
-</blockquote>
-<p>部署成功,赶紧浏览器输入username.github.io查看自己的博客吧!项目根目录下的<code>_config.yml</code>配置详情,点击<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">_config.yml</a></p>
-<p>当然也可以点击<a href="https://github.com/barefootChild/blog_file" target="_blank" rel="external">博主</a>查看我的博客配置文件,感觉可以就点个star吧!</p>
-<h1 id="通篇博文看下来-或许你会感觉博主很懒-什么配置啊-安装啊都连接到其它处"><a href="#通篇博文看下来-或许你会感觉博主很懒-什么配置啊-安装啊都连接到其它处" class="headerlink" title="通篇博文看下来,或许你会感觉博主很懒,什么配置啊,安装啊都连接到其它处!"></a>通篇博文看下来,或许你会感觉博主很懒,什么配置啊,安装啊都连接到其它处!</h1><p> 没错,具体配置什么的,要自己去官网看,官方文档写得很仔细,也是最权威的地方,每个人看都希望追求个性,还望大家,自己查阅,按照自己的喜好配置,博主只是提供路径!</p>
+<h2 id="BFC-之前有篇文章单独记录了，可以在目录中详细查看"><a href="#BFC-之前有篇文章单独记录了，可以在目录中详细查看" class="headerlink" title="BFC(之前有篇文章单独记录了，可以在目录中详细查看)"></a>BFC(之前有篇文章单独记录了，可以在目录中详细查看)</h2><p>默认根元素(html元素)会创建一个BFC，除此之外，下面的任何一个条件也都可以创建一个新的BFC：</p>
+<ul>
+<li>浮动元素（元素的float不是none）</li>
+<li>绝对定位元素（元素具有position为absolute或fixed）</li>
+<li>内联块（元素具有display: inline-block）</li>
+<li>表格单元格（元素具有display: table-cell,HTML表格单元格默认属性）</li>
+<li>表格标题（元素具有display: table-caption,HTML表格标题默认属性）</li>
+<li>具有overflow且值不是visible的块元素</li>
+<li>display: flow-root</li>
+<li>column-span：all应当总是会创建一个新的格式化上下文，即便是具有column-span：all的元素并不被包裹在一个多列容器中</li>
+<li>flex item和grid item</li>
+</ul>
+<p>BFC规定的是其块级子元素的排列方式，而不是创建BFC的元素本身。如下图：<br><img src="http://layout.imweb.io/img/2017-09-26-18-04-25.png" alt="page"></p>
+<p>在一个BFC中，其块级盒子元素按照如下规则进行渲染：</p>
+<ul>
+<li>块级盒会在垂直方向，一个接一个地放置，每个盒子水平占满整个容器空间</li>
+<li>块级盒的垂直方向距离由上下margin决定，同属于一个BFC中的两个或以上块级盒的相接margin会发生重叠</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的元素不会影响到外面的元素。反之亦然</li>
+<li>计算BFC的高度时，浮动元素也参与计算</li>
+</ul>
+<p>具体渲染效果可以参考Demo：<a href="http://coding.imweb.io/demo/p3/vfm/bfc.html" target="_blank" rel="external">块格式化上下文</a></p>
+<h2 id="IFC"><a href="#IFC" class="headerlink" title="IFC"></a>IFC</h2><p>当块容器盒不包括任何块级盒时，就会创建一个行内格式化上下文（IFC）,IFC规定的是行内级子元素的排列方式，其渲染规则比较多，简单罗列几点：</p>
+<ul>
+<li>盒子一个接一个地在水平方向摆放，当容器宽度不够时就会换行；</li>
+<li>每一行将会生成一个匿名行盒（line box），包括该行的所有行内级盒；</li>
+<li>水平方向上，当所有盒的总宽度小于匿名行盒的宽度时，那么水平方向排版由text-align属性来决定；</li>
+<li>垂直方向上，行内级盒的对齐方式由vertical-align控制，默认对齐方式为baseline；</li>
+<li>行盒的高度由内部子元素中实际高度最高的盒子计算出来，值得注意的是，行内盒（inline boxes）的垂直的border，padding与margin都不会撑开行盒的高度；</li>
+</ul>
+<p>注：在IFC的环境中，是不能存在块级元素的，如果将块级元素插入到IFC中，那么此IFC将会被破坏掉变成BFC，而块级元素前的元素或文本和块级元素后的元素或文本将会各自自动产生一个匿名块盒将其包围；<br>具体行盒高度及垂直对齐方式渲染效果可参看：</p>
+<ul>
+<li><a href="http://coding.imweb.io/demo/p3/vfm/ifc-vertical-align.html" target="_blank" rel="external">行内级元素垂直对齐方式</a></li>
+<li><a href="http://coding.imweb.io/demo/p3/vfm/ifc-height.html" target="_blank" rel="external">行盒高度</a></li>
+</ul>
+<h2 id="其他格式化上下文"><a href="#其他格式化上下文" class="headerlink" title="其他格式化上下文"></a>其他格式化上下文</h2><p>可参见原文地址</p>
 
       
 
@@ -285,19 +270,15 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BFC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">gitHub Pages</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IFC</a>
         		</li>
       		
 		</ul>
@@ -353,7 +334,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2016/11/01/createBlog/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://barefootChild.github.io/2017/10/26/formatContext/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -367,18 +348,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2016/11/07/ES6-vs-ES5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ES6_vs_ES5
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/01/arithmetic-js/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">arithmetic-js</div>
+    <a href="/2017/10/20/EventLoop/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">EventLoop</div>
       <i class="icon-circle-right"></i>
     </a>
   
