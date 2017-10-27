@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="BareFootChild的博客">
 <meta property="og:description" content="javascript中常见的算法问题  关于这些方法的总结,是本人在浏览前端干货时发现的有趣的东西,您可以点击阅读原文去查看原文(原文有些方法不对,可亲测); 判断一个单词是否是回文? 回文单词就是指该单词倒置后和原单词完全一样;   123function checkPalindrom(str)&amp;#123;  return str == str.split(&apos;&apos;).reverse().join(">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-03T12:21:55.000Z">
+<meta property="og:updated_time" content="2017-10-27T05:45:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="arithmetic-js">
 <meta name="twitter:description" content="javascript中常见的算法问题  关于这些方法的总结,是本人在浏览前端干货时发现的有趣的东西,您可以点击阅读原文去查看原文(原文有些方法不对,可亲测); 判断一个单词是否是回文? 回文单词就是指该单词倒置后和原单词完全一样;   123function checkPalindrom(str)&amp;#123;  return str == str.split(&apos;&apos;).reverse().join(">
@@ -200,6 +200,7 @@ var _hmt = _hmt || [];
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="selector-tag">a</span>, b] = [<span class="selector-tag">b</span>, a]</div></pre></td></tr></table></figure>
 <h2 id="随机生成指定长度的字符串"><a href="#随机生成指定长度的字符串" class="headerlink" title="随机生成指定长度的字符串"></a>随机生成指定长度的字符串</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomString</span><span class="params">(n)</span> &#123;</span></div><div class="line">  let str = <span class="string">'abcdefghijklmnopqrstuvwxyz9876543210'</span>;</div><div class="line">  let tmp = <span class="string">''</span>,</div><div class="line">      <span class="built_in">i</span> = <span class="number">0</span>,</div><div class="line">      l = str.<span class="built_in">length</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++) &#123;</div><div class="line">    tmp += str.charAt(Math.floor(Math.random() * <span class="number">1</span>));</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="找出正数数组的最大差值-原文对于该方法的书写是错误的-亲测-其它方法都很棒-值得追捧"><a href="#找出正数数组的最大差值-原文对于该方法的书写是错误的-亲测-其它方法都很棒-值得追捧" class="headerlink" title="找出正数数组的最大差值(原文对于该方法的书写是错误的,亲测,其它方法都很棒!值得追捧)"></a>找出正数数组的最大差值(原文对于该方法的书写是错误的,亲测,其它方法都很棒!值得追捧)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMaxProfit</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> minValue = <span class="built_in">Math</span>.min(...arr);</div><div class="line">    <span class="keyword">let</span> maxValue = <span class="built_in">Math</span>.max(...arr);</div><div class="line">    <span class="keyword">return</span> maxValue - minValue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="准确判断js数据类型"><a href="#准确判断js数据类型" class="headerlink" title="准确判断js数据类型"></a>准确判断js数据类型</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var<span class="built_in"> type </span>= function(o) &#123;</div><div class="line">    var s = Object.prototype.toString.call(o);</div><div class="line">    return s.match(/\[object (.*?)\]/)[1].toLowerCase();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
 
       
@@ -456,11 +457,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFC</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,7 +469,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,7 +485,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Ajax</a>
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">methods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">reactive</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,26 +533,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">reactive</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
@@ -540,15 +549,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
+                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">methods</a>
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,15 +577,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">constructor</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
+                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,7 +597,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IFC</a>
+                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,23 +609,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">function</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">currie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">arguments</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
+                <a href="javascript:void(0)" class="js-tag color4">IFC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,6 +626,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">copy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">function</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">currie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">arguments</a>
               </li>
              
               <li class="article-tag-list-item">
