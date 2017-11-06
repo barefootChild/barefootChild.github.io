@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="BareFootChild的博客">
 <meta property="og:description" content="react生命周期详解  我们在使用react时，往往需要在组件渲染之前进行一些数据操作，来保证我们视图中展示的信息是正确的；那么，在哪里或者在什么时候操作数据才会被视图渲染时展示我们修改后的数据信息呢？操作数据的代码写在哪里才是正确的呢？这些问题在我们了解了组件的生命周期后就会豁然开朗了；">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-27T04:01:22.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1586207-e936d6ee7ae3ba55.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-11-06T08:13:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-lifecycle">
 <meta name="twitter:description" content="react生命周期详解  我们在使用react时，往往需要在组件渲染之前进行一些数据操作，来保证我们视图中展示的信息是正确的；那么，在哪里或者在什么时候操作数据才会被视图渲染时展示我们修改后的数据信息呢？操作数据的代码写在哪里才是正确的呢？这些问题在我们了解了组件的生命周期后就会豁然开朗了；">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1586207-e936d6ee7ae3ba55.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="BareFootChild的博客" type="application/atom+xml">
   
@@ -185,7 +187,8 @@ var _hmt = _hmt || [];
       
         <h1 id="react生命周期详解"><a href="#react生命周期详解" class="headerlink" title="react生命周期详解"></a>react生命周期详解</h1><p>  我们在使用react时，往往需要在组件渲染之前进行一些数据操作，来保证我们视图中展示的信息是正确的；那么，在哪里或者在什么时候操作数据才会被视图渲染时展示我们<br>修改后的数据信息呢？操作数据的代码写在哪里才是正确的呢？这些问题在我们了解了组件的生命周期后就会豁然开朗了；</p>
 <a id="more"></a>
-<h2 id="组件的各个生命周期"><a href="#组件的各个生命周期" class="headerlink" title="组件的各个生命周期"></a>组件的各个生命周期</h2><ul>
+<h2 id="组件的各个生命周期"><a href="#组件的各个生命周期" class="headerlink" title="组件的各个生命周期"></a>组件的各个生命周期</h2><p>先看一张图吧：<br><img src="http://upload-images.jianshu.io/upload_images/1586207-e936d6ee7ae3ba55.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="lifecycle"></p>
+<ul>
 <li><p>componentWillMount(){}</p>
 <p>Mounting安装阶段，在客户端和服务器上，在初始渲染发生之前立即调用一次，在这个方法中可以调用setState，render()函数将会渲染最新的的状态，但是只会执行一次；</p>
 </li>
@@ -485,19 +488,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Function</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">event_loop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Function</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,18 +544,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
@@ -566,6 +557,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">generator</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,6 +588,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -598,10 +605,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">gitHub Pages</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Redux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,18 +652,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spider</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">es6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -670,6 +661,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">lifecycle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spider</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
               </li>
             
             <div class="clearfix"></div>
