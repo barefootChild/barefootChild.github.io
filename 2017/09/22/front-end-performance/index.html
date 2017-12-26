@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="BareFootChild的博客">
 <meta property="og:description" content="前端性能优化  前端性能优化涉及到从服务器到协议再到宿主环境本身等对方面的知识，业界目前还是以雅虎总结出来的35条前端性能优化的黄金军规为主；  web前端优化的目标就是如何让用户更快、更简单易用、更为流畅地使用我们的服务，对于前端来说就是如何让我们的资源体积更小、数量更精简、内容更早呈现，交互更加人性化；业内有一条比较公认的二八原则，就是资源从服务器处理完下发到客户端的浏览器上所占的时间比例大概">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-09T05:57:34.000Z">
+<meta property="og:updated_time" content="2017-12-26T02:22:59.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="front_end_performance">
 <meta name="twitter:description" content="前端性能优化  前端性能优化涉及到从服务器到协议再到宿主环境本身等对方面的知识，业界目前还是以雅虎总结出来的35条前端性能优化的黄金军规为主；  web前端优化的目标就是如何让用户更快、更简单易用、更为流畅地使用我们的服务，对于前端来说就是如何让我们的资源体积更小、数量更精简、内容更早呈现，交互更加人性化；业内有一条比较公认的二八原则，就是资源从服务器处理完下发到客户端的浏览器上所占的时间比例大概">
@@ -183,7 +183,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h1><p>  前端性能优化涉及到从服务器到协议再到宿主环境本身等对方面的知识，业界目前还是以雅虎总结出来的<a href="http://www.cnblogs.com/siqi/p/3655436.html" target="_blank" rel="external">35条前端性能优化的黄金军规</a><br>为主；<br>  web前端优化的目标就是如何让用户更快、更简单易用、更为流畅地使用我们的服务，对于前端来说就是如何让我们的资源体积更小、数量更精简、内容更早呈现，交互更加<br>人性化；业内有一条比较公认的二八原则，就是资源从服务器处理完下发到客户端的浏览器上所占的时间比例大概是整个过程的20%，也就是说服务器端可以优化的空间的效率提<br>升并不会很明显，前端性能优化成为web性能优化重点考虑的领域；</p>
+        <h1 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h1><p>  前端性能优化涉及到从服务器到协议再到宿主环境本身等对方面的知识，业界目前还是以雅虎总结出来的<a href="http://www.cnblogs.com/siqi/p/3655436.html" target="_blank" rel="external">35条前端性能优化的黄金军规</a>为主；<br>  web前端优化的目标就是如何让用户更快、更简单易用、更为流畅地使用我们的服务，对于前端来说就是如何让我们的资源体积更小、数量更精简、内容更早呈现，交互更加人性化；业内有一条比较公认的二八原则，就是资源从服务器处理完下发到客户端的浏览器上所占的时间比例大概是整个过程的20%，也就是说服务器端可以优化的空间的效率提升并不会很明显，前端性能优化成为web性能优化重点考虑的领域；</p>
 <a id="more"></a>
 <ul>
 <li><h2 id="浏览器宿主环境"><a href="#浏览器宿主环境" class="headerlink" title="浏览器宿主环境"></a>浏览器宿主环境</h2><p>1、突破单线程解析渲染阻塞限制<br>  浏览器是一个单线程解析模式去解析渲染从服务器端拿到的html文本，css加载的过程会对后续的脚本资源加载造成阻塞，脚本的加载也会阻塞后续DOM结构的解析造成页面的留白时间增长，<br>一般建议把样式文件放在头部，脚本文件放在DOM节点最末尾，减少阻塞；<br>  针对不需要DOM操作的脚本文件可以采用动态创建script的方式载入，动态载入的脚本不阻塞后续资源的加载；<br>  脚本文件加载可以加上defer或者async属性表示防止阻塞；</p>
@@ -468,14 +468,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">event_loop</a>
               </li>
              
@@ -484,19 +476,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Function</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,14 +504,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">methods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -529,6 +513,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">reactive</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Regex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">arithmetic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">methods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,6 +548,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">browser</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">constructor</a>
               </li>
              
@@ -560,15 +576,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cookie</a>
+                <a href="javascript:void(0)" class="js-tag color5">cors</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">coding</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">daily</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,19 +604,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">browser</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">daily</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -612,7 +632,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CommonJS</a>
+                <a href="javascript:void(0)" class="js-tag color4">IFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">elementPosition</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,19 +656,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IFC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">frontEnd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">elementPosition</a>
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,10 +665,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">es6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
              
               <li class="article-tag-list-item">
